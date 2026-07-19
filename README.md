@@ -1,0 +1,1 @@
+Aviso: Este es un proyecto comunitario y no oficial. La documentación original pertenece al proyecto Ren'Py. Si encuentras errores de traducción o interpretación, puedes abrir un Issue o enviar un Pull Request.
