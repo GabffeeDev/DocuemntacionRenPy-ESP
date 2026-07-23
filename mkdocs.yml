@@ -1,18 +1,28 @@
-site_name: My Docs
+site_name: Ren'Py Visual Novel Engine
+site_description: Documentación de Ren'Py en Español
+
 theme:
   name: material
+  language: es
+
+  features:
+    - navigation.sections
+    - navigation.expand
+    - toc.follow
+    - search.highlight
+    - search.suggest
 
   palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/weather-night
-        name: Cambiar a modo oscuro
-
     - scheme: slate
-      primary: indigo
-      accent: indigo
+      primary: black
+      accent: blue
       toggle:
         icon: material/weather-sunny
-        name: Cambiar a modo claro
+        name: Modo claro
+
+    - scheme: default
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/weather-night
+        name: Modo oscuro
