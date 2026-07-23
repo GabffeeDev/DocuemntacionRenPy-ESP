@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "docs/index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "index"
             }
           }
         ]
@@ -185,6 +185,16 @@
   },
   "active": "9a1d78b8b6176782",
   "lastOpenFiles": [
+    "docs/Inicio rápido.md",
+    "images/Pasted image 20260723171011.png",
+    "docs/assets/renpy-logo.png",
+    "images",
+    "images/Pasted image 20260723170121.png",
+    "images/Pasted image 20260723165844.png",
+    "images/Pasted image 20260723163724.png",
+    "images/Pasted image 20260723163658.png",
+    "docs/index.md",
+    "README.md",
     "site/search/search_index.json",
     "site/search",
     "site/Definiendo imágenes/index.html",
@@ -194,11 +204,8 @@
     "site/Comienzo/index.html",
     "site/Comienzo",
     "site/index.html",
-    "site/sitemap.xml.gz",
-    "site/sitemap.xml",
     "site/assets/images/favicon.png",
     "site/assets/renpy-logo.png",
-    "docs/assets/renpy-logo.png",
     "docs/Docuemtación Ren'py/Definiendo imágenes.md",
     "docs/Docuemtación Ren'py/Comienzo.md",
     "docs/Docuemtación Ren'py/Definiendo Personajes.md",

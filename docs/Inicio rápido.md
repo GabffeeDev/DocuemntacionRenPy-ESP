@@ -34,13 +34,29 @@ No existe una única forma correcta de crear una novela visual. **Cada desarroll
 
 Comencemos construyendo una buena base. El resto del proyecto será mucho más fácil cuando cada pieza tenga su lugar.
 
-### Definiendo personajes
+---
 
-Más información acerca de esta declaración -> [definiendo personajes](Definiendo%20Personajes.md)
+Al abrir el launcher de Ren'py podrás **cambiar el idioma a Español**, como también crear un proyecto y elegir su nombre y resolución. Solo asegúrate de que las imágenes que pongas en Ren'py sean acorde a la resolución del proyecto.
+
+![[Pasted image 20260723165844.png]]
+
+En preferencias deberás elegir la carpeta en la cual se **guardaran** tus proyectos, en lo personal te recomiendo ser sumamente ordenado en ello. 
+
+Por cierto te recomiendo que instales [Visual Studio Code]([Download Visual Studio Code - Free AI Code Editor for Mac, Linux, Windows](https://code.visualstudio.com/download?_exp_download=fb315fc982)) para que lo selecciones como editor de texto (de sistema para que no tengas que actualizarlo a cada rato), te servirá muchísimo.                                                             
+![[Pasted image 20260723170121.png]]
+
+Una vez hayas creado tu proyecto, en este caso lo nombre "NuevoProyecto" te darás cuenta que al lado derecho en la columna que dice "Editar archivo" aparecen unos scripts con extensión .rpy, que es el lenguaje que usa Ren'py. Pero de momento no los tocaremos ya que lo importante se encuentra en la columna derecha "Abrir carpeta", donde veras varias carpetas que podrás modificar o agregar recursos para usarlos en tu juego.
+
+![[Pasted image 20260723171011.png]]
+
+Normalmente antes de empezar a trabajar en un proyecto desearás agregar los recursos antes de empezar a programar la historia
+
+
+### Definiendo personajes
 
 La función `Character()` se utiliza para crear un personaje que participará en los diálogos de la novela visual. Este objeto almacena la configuración del personaje, como su apariencia durante las conversaciones y otras opciones relacionadas con la forma en que se muestran sus intervenciones.
 
-Una vez creado, es habitual asignarlo a una variable mediante la instrucción `define`. Esa variable se utilizará posteriormente para identificar al personaje en los diálogos. Cuando Ren'Py encuentra esa variable al inicio de una sentencia de diálogo, sabe que el texto debe mostrarse utilizando la configuración asociada a ese personaje.
+Una vez creado, es habitual asignarlo a una **variable** mediante la instrucción `define`. Esa variable se utilizará posteriormente para identificar al personaje en los diálogos. Cuando Ren'Py encuentra esa variable al inicio de una sentencia de diálogo, sabe que el texto debe mostrarse utilizando la configuración asociada a ese personaje.
 
 Por ejemplo:
 
@@ -50,6 +66,7 @@ define e = Character("Eileen")
 e "¡Hola, mundo!"
 ```
 
+![[Pasted image 20260723163724.png|293]]
 En este caso, `Character()` crea un personaje con una configuración específica y la almacena en la variable `e`. Más adelante, cada vez que se utilice `e` en un diálogo, Ren'Py aplicará automáticamente esa configuración al mostrar el texto.
 
 Aunque este ejemplo solo personaliza un aspecto visual, `Character()` admite numerosos parámetros que permiten modificar el comportamiento y la presentación de los diálogos, los cuales se explorarán en las siguientes secciones.
@@ -57,5 +74,4 @@ Aunque este ejemplo solo personaliza un aspecto visual, `Character()` admite num
 
 ### Definiendo imágenes
 
-Mas información de esta declaración -> [image](Definiendo%20imágenes.md)
-
+Voy a comentar algo muy interesante sobre Ren'py que muchas desarrolladores no saben, ¡Ren'py crea variables automáticamente para las imágenes!
