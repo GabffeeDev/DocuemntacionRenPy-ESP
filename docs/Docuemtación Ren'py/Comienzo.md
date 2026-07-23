@@ -18,7 +18,7 @@ Si esta documentación puede ayudarte a dar ese siguiente paso, entonces habrá 
 
 Y, sobre todo, **no dejes que el miedo a no ser perfecto impida que tu historia llegue a existir.**
 
-**Descargar Ren'py ->** https://www.renpy.org/latest.html
+[Descarga Ren'py](https://www.renpy.org/latest.html)
 
 # ¿Por dónde empezar?
 
@@ -36,7 +36,7 @@ Comencemos construyendo una buena base. El resto del proyecto será mucho más f
 
 ### Definiendo personajes
 
-Más información acerca de esta función -> [[Definiendo Personajes]]
+Más información acerca de esta declaración -> [definiendo personajes](Definiendo%20Personajes.md)
 
 La función `Character()` se utiliza para crear un personaje que participará en los diálogos de la novela visual. Este objeto almacena la configuración del personaje, como su apariencia durante las conversaciones y otras opciones relacionadas con la forma en que se muestran sus intervenciones.
 
@@ -57,5 +57,5 @@ Aunque este ejemplo solo personaliza un aspecto visual, `Character()` admite num
 
 ### Definiendo imágenes
 
-Mas información acerca de image -> [[Definiendo imágenes]]
+Mas información de esta declaración -> [image](Definiendo%20imágenes.md)
 

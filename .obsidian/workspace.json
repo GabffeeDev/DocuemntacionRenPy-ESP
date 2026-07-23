@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Docuemtación Ren'py/EMPEZANDO.md",
+                "file": "docs/Docuemtación Ren'py/Comienzo.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "EMPEZANDO"
+              "title": "Comienzo"
             }
           }
         ]
@@ -185,6 +185,9 @@
   },
   "active": "9a1d78b8b6176782",
   "lastOpenFiles": [
+    "docs/Docuemtación Ren'py/Definiendo imágenes.md",
+    "docs/Docuemtación Ren'py/Comienzo.md",
+    "docs/Docuemtación Ren'py/Definiendo Personajes.md",
     "Docuemtación Ren'py/Definiendo Personajes.md",
     "Definiendo imágenes.md",
     "Docuemtación Ren'py/EMPEZANDO.md"
