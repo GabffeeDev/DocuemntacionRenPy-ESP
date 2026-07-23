@@ -4,6 +4,8 @@ site_description: Documentación de Ren'Py en Español
 theme:
   name: material
   language: es
+  logo: assets/renpy-logo.png
+  favicon: assets/renpy-logo.png
 
   features:
     - navigation.sections
@@ -26,3 +28,8 @@ theme:
       toggle:
         icon: material/weather-night
         name: Modo oscuro
+
+nav:
+  - Inicio Rápido: Comienzo.md
+  - Definiendo Personajes: "Definiendo Personajes.md"
+  - Definiendo imágenes: "Definiendo imágenes.md"
