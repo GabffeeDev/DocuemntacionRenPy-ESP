@@ -20,7 +20,7 @@ Y, sobre todo, **no dejes que el miedo a no ser perfecto impida que tu historia 
 
 [Descarga Ren'py](https://www.renpy.org/latest.html)
 
-# ¿Por dónde empezar?
+## ¿Por dónde empezar?
 
 Si es la primera vez que desarrollas una novela visual, es normal preguntarse por dónde comenzar. **Ren'Py** ofrece muchas herramientas, y puede resultar tentador empezar a programar de inmediato. Sin embargo, una buena novela visual comienza mucho antes de escribir la primera línea de código.
 
@@ -36,13 +36,13 @@ Comencemos construyendo una buena base. El resto del proyecto será mucho más f
 
 ---
 
-# Crear un proyecto en Ren'Py
+## Crear un proyecto en Ren'Py
 
 Al abrir el _Launcher_ de Ren'Py podrás **cambiar el idioma a español**, crear un proyecto nuevo y elegir su nombre y resolución.
 
 Lo más importante es que la resolución del proyecto coincida con la de las imágenes que utilizarás. De esta forma evitarás tener que escalarlas constantemente y conservarás una mejor calidad visual.
 
-![[Pasted image 20260723165844.png]]
+![Launcher de Ren'Py mostrando la creación de un proyecto](images/renpy-launcher.png)
 
 ## Configurar las preferencias
 
@@ -54,7 +54,7 @@ Además, te recomiendo instalar **Visual Studio Code** y configurarlo como edito
 
 [Visual Studio Code - Descargar](https://code.visualstudio.com/download?_exp_download=fb315fc982)
 
-![[Pasted image 20260723170121.png]]
+![Preferencias de Ren'Py con opciones de carpeta de proyectos y editor](images/renpy-preferencias.png)
 
 ## Conociendo la estructura del proyecto
 
@@ -62,7 +62,7 @@ Una vez creado el proyecto (en este ejemplo llamado **NuevoProyecto**), observar
 
 Por ahora no nos centraremos en ellos. Lo importante es la sección **Abrir carpeta**, donde encontrarás la estructura del proyecto y las carpetas en las que agregarás los recursos que utilizará tu juego.
 
-![[Pasted image 20260723171011.png]]
+![Estructura inicial del proyecto en el launcher de Ren'Py](images/estructura-proyecto.png)
 
 ## Organizando los recursos
 
@@ -83,7 +83,7 @@ Dentro de `sprites`, lo ideal es crear una carpeta para cada personaje y guardar
 
 Puede parecer una organización excesiva al principio, pero cuando el proyecto crezca te ahorrarás mucho tiempo buscando archivos. Un proyecto ordenado también transmite profesionalidad y facilita el mantenimiento.
 
-![[Pasted image 20260723172215.png]]
+![Carpeta images organizada por tipo de recurso](images/carpeta-images.png)
 
 Con la carpeta `audio` ocurre lo mismo. Lo recomendable es separar la música de los efectos de sonido en carpetas independientes.
 
@@ -96,9 +96,9 @@ Por ejemplo:
 
 Esta pequeña organización hará que encontrar un recurso específico sea mucho más rápido a medida que tu proyecto aumente de tamaño.
 
-![[Pasted image 20260723172431.png|611]]
+![Carpeta audio separada en music y sfx](images/carpeta-audio.png)
 
-¡Una vez terminado de organizar tus recursos ya podemos empezar a a codear!
+¡Una vez terminado de organizar tus recursos ya podemos empezar a programar!
 
 ---
 
@@ -110,14 +110,15 @@ Por ahora **nos centraremos únicamente en este archivo**, ya que contiene todo 
 
 Al abrir **`script.rpy`**, encontrarás un contenido similar al siguiente:
 
-![[Pasted image 20260723173023.png]]
+![Archivo script.rpy abierto desde el launcher de Ren'Py](images/script-rpy.png)
 
-**A partir de aquí aprenderás todo lo necesario para empezar a programar tu novela visual desde este mismo momento, es sencillo ¡no te desanimes!.**
+**A partir de aquí aprenderás todo lo necesario para empezar a programar tu novela visual. Es sencillo, ¡no te desanimes!**
+
 ### Definir personajes
 
 Como puedes observar en **`script.rpy`**, estamos utilizando la función **`Character()`**, la cual se asigna a la variable **`e`**, correspondiente a **Eileen**. Esta función recibe como parámetro una **cadena de texto** (`string`) con el valor **`"Eileen"`**, que será el nombre que aparecerá en la caja de diálogo del juego cada vez que el personaje hable.
 
-![[Pasted image 20260723175303.png]]
+![Ejemplo de definición de un personaje con Character](images/definir-character.png)
 
 
 ```renpy
@@ -350,7 +351,7 @@ Ren'Py reemplazará automáticamente la imagen anterior porque ambas comparten l
 
 Esto tiene una ventaja enorme: **no tendrás que ocultar al personaje cada vez que cambie de expresión.**
 
-Existe la instrucción `**hide**`, cuya función es quitar una imagen de la pantalla.
+Existe la instrucción `hide`, cuya función es quitar una imagen de la pantalla.
 
 Por ejemplo:
 
@@ -395,7 +396,7 @@ Una vez registrada la imagen, podrás mostrarla cuando quieras con la sentencia 
 show yuri happy
 ```
 
-Ren'Py buscará la imagen llamada `**yuri happy**` y mostrará el archivo que registraste anteriormente.
+Ren'Py buscará la imagen llamada `yuri happy` y mostrará el archivo que registraste anteriormente.
 
 ---
 
@@ -413,7 +414,7 @@ show yuri sad
 
 Como ambas imágenes tienen la misma **etiqueta** (`yuri`), Ren'Py reemplazará automáticamente la expresión anterior por la nueva.
 
-Gracias a este sistema, normalmente **no es necesario utilizar** `**hide**` para cambiar la expresión de un personaje.
+Gracias a este sistema, normalmente **no es necesario utilizar** `hide` para cambiar la expresión de un personaje.
 
 Por ejemplo, esta forma funciona:
 
@@ -432,7 +433,7 @@ show yuri sad
 
 Ren'Py ocultará la imagen anterior y mostrará la nueva automáticamente porque ambas pertenecen a la misma etiqueta.
 
-La sentencia `**hide**` suele reservarse para situaciones donde realmente quieres que una imagen desaparezca de la pantalla. Por ejemplo:
+La sentencia `hide` suele reservarse para situaciones donde realmente quieres que una imagen desaparezca de la pantalla. Por ejemplo:
 
 - Cuando un personaje abandona la escena.
 - Antes de mostrar un **CG**.
@@ -453,6 +454,5 @@ En este caso Ren'Py cargará esa imagen sin necesidad de haberla registrado ante
 
 Muchos desarrolladores utilizan este método para imágenes que solo aparecerán una vez, pruebas rápidas o recursos temporales.
 
-Sin embargo, para personajes que cambiarán constantemente de expresión, la sentencia `**image**` resulta mucho más cómoda y mantiene el código limpio y organizado.
-
+Sin embargo, para personajes que cambiarán constantemente de expresión, la sentencia `image` resulta mucho más cómoda y mantiene el código limpio y organizado.
 

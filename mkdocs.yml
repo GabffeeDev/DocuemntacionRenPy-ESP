@@ -29,7 +29,9 @@ theme:
         icon: material/weather-night
         name: Modo oscuro
 
+extra_css:
+  - stylesheets/extra.css
+
 nav:
-  - Inicio Rápido: Comienzo.md
-  - Definiendo Personajes: "Definiendo Personajes.md"
-  - Definiendo imágenes: "Definiendo imágenes.md"
+  - Inicio: index.md
+  - Inicio Rápido: Inicio rápido.md
