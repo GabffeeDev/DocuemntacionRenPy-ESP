@@ -44,7 +44,7 @@ Una vez creado, es habitual asignarlo a una variable mediante la instrucción `d
 
 Por ejemplo:
 
-```Python
+```
 define e = Character("Eileen")
 
 e "¡Hola, mundo!"
@@ -53,3 +53,9 @@ e "¡Hola, mundo!"
 En este caso, `Character()` crea un personaje con una configuración específica y la almacena en la variable `e`. Más adelante, cada vez que se utilice `e` en un diálogo, Ren'Py aplicará automáticamente esa configuración al mostrar el texto.
 
 Aunque este ejemplo solo personaliza un aspecto visual, `Character()` admite numerosos parámetros que permiten modificar el comportamiento y la presentación de los diálogos, los cuales se explorarán en las siguientes secciones.
+
+
+### Definiendo imágenes
+
+Mas información acerca de image -> [[Definiendo imágenes]]
+
