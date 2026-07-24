@@ -102,8 +102,6 @@ Esta pequeña organización hará que encontrar un recurso específico sea mucho
 
 ---
 
-## El archivo `script.rpy`
-
 A continuación abriremos el archivo **`script.rpy`**.
 
 Por ahora **nos centraremos únicamente en este archivo**, ya que contiene todo lo necesario para comenzar a desarrollar una novela visual desde cero. Más adelante profundizaremos en cada una de las opciones y en las características más avanzadas de Ren'Py.
@@ -132,8 +130,6 @@ Así que... **¡hazlo lo más cómodo posible!**
 No te preocupes si todavía no entiendes qué es una variable o cómo funciona la programación. No es un concepto complicado y lo irás comprendiendo conforme avances en esta guía.
 
 Aun así, **sí te recomendaría aprender un poquito de Python**. No es obligatorio para hacer una novela visual, pero créeme, te ayudará muchísimo cuando quieras hacer cosas más avanzadas.
-
-## ¿Por qué usar `Character()`?
 
 Como dato curioso, la función **`Character()`** te ahorra muchísimo tiempo, ya que evita que tengas que escribir el nombre del personaje cada vez que habla.
 
@@ -165,8 +161,6 @@ Como puedes notar, el nombre **"Yuri"** debe escribirse en cada línea de diálo
 
 Por eso, para los personajes principales siempre es recomendable utilizar **`Character()`**.
 
-## ¿Cuándo no hace falta usar `Character()`?
-
 Si un personaje solo aparecerá una vez o tendrá muy pocas líneas de diálogo, no pasa absolutamente nada por escribir su nombre directamente.
 
 Por ejemplo:
@@ -197,8 +191,6 @@ Como regla general, piensa que **`Character()`** está para hacerte la vida más
 
 ### Definiendo imágenes
 
-#### La sentencia `image`
-
 Para que Ren'Py pueda mostrar una imagen, **primero debes definirla** mediante la sentencia `image`.
 
 Su sintaxis es la siguiente:
@@ -223,7 +215,7 @@ A continuación veremos un concepto **importantísimo**.
 
 > **Aquí está la diferencia entre simplemente programar en Ren'Py y programar de forma ordenada y profesional.**
 
-## Etiqueta y atributo
+#### Etiqueta y atributo
 
 Las imágenes en Ren'Py se identifican mediante un **nombre de imagen**, el cual está compuesto por dos partes:
 
@@ -296,7 +288,7 @@ show yuri happy
 
 No te preocupes si todavía no entiendes qué hace la sentencia **`show`**. Más adelante la veremos en profundidad.
 
-## IMPORTANTE
+**IMPORTANTE**
 
 Ren'Py **no distingue entre mayúsculas y minúsculas en el nombre de las imágenes que registras**. Internamente convierte el nombre de la imagen a minúsculas.
 
@@ -388,7 +380,7 @@ En este caso ocurre lo siguiente:
 - El **atributo** es `happy`.
 - El archivo que utilizará Ren'Py es `images/sprites/yuri/happy.png`.
 
-## Sentencia show
+## Sentencia show y hide
 
 Una vez registrada la imagen, podrás mostrarla cuando quieras con la sentencia `show`.
 
