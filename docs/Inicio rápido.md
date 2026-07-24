@@ -80,7 +80,10 @@ Esta pequeña organización hará que encontrar un recurso específico sea mucho
 
 ¡Una vez terminado de organizar tus recursos ya podemos empezar a programar!
 
----
+## Programar en Ren'py
+
+**A partir de aquí aprenderás todo lo necesario para empezar a programar tu novela visual. Es sencillo, ¡no te desanimes!**
+
 
 A continuación abriremos el archivo **`script.rpy`**.
 
@@ -90,9 +93,7 @@ Al abrir **`script.rpy`**, encontrarás un contenido similar al siguiente:
 
 ![Archivo script.rpy abierto desde el launcher de Ren'Py](images/script-rpy.png)
 
-**A partir de aquí aprenderás todo lo necesario para empezar a programar tu novela visual. Es sencillo, ¡no te desanimes!**
-
-## Definir personajes
+### Definir personajes
 
 Como puedes observar en **`script.rpy`**, estamos utilizando la función **`Character()`**, la cual se asigna a la variable **`e`**, correspondiente a **Eileen**. Esta función recibe como parámetro una **cadena de texto** (`string`) con el valor **`"Eileen"`**, que será el nombre que aparecerá en la caja de diálogo del juego cada vez que el personaje hable.
 
@@ -169,9 +170,11 @@ d "Nos veremos la próxima semana."
 
 Como regla general, piensa que **`Character()`** está para hacerte la vida más fácil. Cuanto más aparezca un personaje en tu juego, más sentido tendrá definirlo con esta función.
 
-## Definiendo imágenes
 
-### Sentencia `image`
+%%Explicar parámetros más útiles  en Character(%%
+### Definiendo imágenes
+
+#### Sentencia `image`
 
 Para que Ren'Py pueda mostrar una imagen, **primero debes registrarla** mediante la sentencia `image`.
 
@@ -181,7 +184,7 @@ Su sintaxis es la siguiente:
 image nombre_de_la_imagen = "ruta/del/archivo.png"
 ```
 
-### Etiqueta y atributo
+#### Etiqueta y atributo
 
 El nombre de una imagen en Ren'Py está formado por una **etiqueta** (*tag*) y uno o más **atributos** (*attributes*).
 
@@ -211,7 +214,7 @@ Aquí Ren'Py interpreta:
 
 Fíjate que **los espacios son importantes**. Cada palabra forma parte del nombre de la imagen y Ren'Py las interpreta como una etiqueta seguida de uno o más atributos.
 
-### Registro automático de imágenes
+#### Registro automático de imágenes
 
 Hay una característica de Ren'Py que muchos desarrolladores principiantes pasan por alto.
 
@@ -267,7 +270,7 @@ show yuri happy
 
 Aun así, te recomiendo escribir siempre las etiquetas y los atributos en minúsculas para mantener un código consistente y fácil de leer.
 
-### ¿Por qué usar etiquetas y atributos?
+#### ¿Por qué usar etiquetas y atributos?
 
 La principal ventaja es que Ren'Py puede cambiar automáticamente la imagen de un personaje sin que tengas que ocultarla primero.
 
@@ -287,7 +290,7 @@ Como ambas imágenes comparten la etiqueta `yuri`, Ren'Py reemplazará automáti
 
 Gracias a este sistema, normalmente **no es necesario utilizar `hide` para cambiar la expresión, la pose o la ropa de un personaje.**
 
-### Sentencias `show` y `hide`
+#### Sentencias `show` y `hide`
 
 Una vez registrada una imagen, puedes mostrarla con la sentencia `show`.
 
@@ -310,7 +313,7 @@ Generalmente `hide` se utiliza cuando realmente quieres que un personaje desapar
 
 ---
 
-### ¿Y si no quiero usar la sentencia `image`?
+#### ¿Y si no quiero usar la sentencia `image`?
 
 También es completamente válido mostrar un archivo indicando su ruta directamente.
 
