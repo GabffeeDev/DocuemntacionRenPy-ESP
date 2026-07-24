@@ -1,11 +1,11 @@
-site_name: Ren'Py Visual Novel Engine
+site_name: Docuemntación Ren'py Español
 site_description: Documentación de Ren'Py en Español
 
 theme:
   name: material
   language: es
   logo: assets/renpy-logo.png
-  favicon: assets/renpy-logo.png
+  favicon: assets/renpy.ico
 
   features:
     - navigation.sections
@@ -33,5 +33,5 @@ extra_css:
   - stylesheets/extra.css
 
 nav:
-  - Inicio: index.md
+  - Bienvenida: index.md
   - Inicio Rápido: Inicio rápido.md

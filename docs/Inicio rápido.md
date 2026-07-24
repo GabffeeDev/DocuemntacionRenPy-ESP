@@ -1,25 +1,5 @@
-# Inicio Rápido
-
-## A quienes se atreven a crear
-
-Desarrollar una novela visual es un acto de **valentía.**
-
-Es decidir convertir una idea invisible en una experiencia que otras personas podrán sentir. Es enfrentarse a una página en blanco sin tener la certeza de que algún día habrá una versión terminada. Es aprender programación, escritura, narrativa, diseño, música, arte y muchas otras habilidades, no porque alguien lo exija, sino porque existe el deseo de contar una historia.
-
-Habrá días en los que el progreso parezca insignificante. Días en los que un solo error ocupe horas de trabajo, o en los que una escena no consiga transmitir lo que imaginabas. Es parte del camino.
-
-Cada línea de código escrita, cada diálogo revisado y cada problema resuelto son pasos hacia una obra que antes no existía. No importa si tu proyecto es pequeño o ambicioso; el simple hecho de intentarlo ya te coloca entre quienes decidieron crear en lugar de limitarse a observar.
-
-Si esta documentación puede ayudarte a dar ese siguiente paso, entonces habrá cumplido su propósito.
-
-***Sigue aprendiendo.***
-
-***Sigue creando.***
-
-Y, sobre todo, **no dejes que el miedo a no ser perfecto impida que tu historia llegue a existir.**
 
 [Descarga Ren'py](https://www.renpy.org/latest.html)
-
 ## ¿Por dónde empezar?
 
 Si es la primera vez que desarrollas una novela visual, es normal preguntarse por dónde comenzar. **Ren'Py** ofrece muchas herramientas, y puede resultar tentador empezar a programar de inmediato. Sin embargo, una buena novela visual comienza mucho antes de escribir la primera línea de código.
@@ -112,11 +92,11 @@ Al abrir **`script.rpy`**, encontrarás un contenido similar al siguiente:
 
 **A partir de aquí aprenderás todo lo necesario para empezar a programar tu novela visual. Es sencillo, ¡no te desanimes!**
 
-### Definir personajes
+## Definir personajes
 
 Como puedes observar en **`script.rpy`**, estamos utilizando la función **`Character()`**, la cual se asigna a la variable **`e`**, correspondiente a **Eileen**. Esta función recibe como parámetro una **cadena de texto** (`string`) con el valor **`"Eileen"`**, que será el nombre que aparecerá en la caja de diálogo del juego cada vez que el personaje hable.
 
-![Ejemplo de definición de un personaje con Character](images/definir-character.png)
+![Ejemplo de definición de un personaje con Character|697](images/definir-character.png)
 
 
 ```renpy
@@ -189,44 +169,25 @@ d "Nos veremos la próxima semana."
 
 Como regla general, piensa que **`Character()`** está para hacerte la vida más fácil. Cuanto más aparezca un personaje en tu juego, más sentido tendrá definirlo con esta función.
 
-### Definiendo imágenes
+## Definiendo imágenes
 
-Para que Ren'Py pueda mostrar una imagen, **primero debes definirla** mediante la sentencia `image`.
+### Sentencia `image`
+
+Para que Ren'Py pueda mostrar una imagen, **primero debes registrarla** mediante la sentencia `image`.
 
 Su sintaxis es la siguiente:
 
-```
+```renpy
 image nombre_de_la_imagen = "ruta/del/archivo.png"
 ```
 
-Pero... **voy a comentarte algo muy interesante sobre Ren'Py que muchos desarrolladores principiantes no conocen...**
+### Etiqueta y atributo
 
-**¡Ren'Py puede registrar automáticamente las imágenes y el audio que defines para que puedas utilizarlos sin escribir la ruta del archivo cada vez!**
+El nombre de una imagen en Ren'Py está formado por una **etiqueta** (*tag*) y uno o más **atributos** (*attributes*).
 
-Esto es una maravilla, porque una vez declarados tus recursos solo tendrás que referirte a ellos por su nombre, haciendo que tu código sea mucho más limpio y fácil de leer.
+La **etiqueta** identifica al personaje o recurso principal, mientras que los **atributos** describen su estado, expresión, ropa, pose o cualquier otra característica.
 
-Por eso quiero darte **otra de mis recomendaciones**.
-
-Además de ser organizado, **sé descriptivo** con el nombre de tus imágenes, audios y variables. Puede parecer un detalle sin importancia, pero créeme: **te hará la vida mucho más fácil conforme tu proyecto vaya creciendo.**
-
-Y no te preocupes, no estás solo. Para eso estoy aquí. A lo largo de esta guía te enseñaré varias buenas prácticas para organizar tus recursos y evitar dolores de cabeza en el futuro.
-
-A continuación veremos un concepto **importantísimo**.
-
-> **Aquí está la diferencia entre simplemente programar en Ren'Py y programar de forma ordenada y profesional.**
-
-#### Etiqueta y atributo
-
-Las imágenes en Ren'Py se identifican mediante un **nombre de imagen**, el cual está compuesto por dos partes:
-
-- **Etiqueta (Tag)**
-    
-- **Atributo (Attribute)**
-    
-
-La **etiqueta** identifica al personaje o recurso principal, mientras que los **atributos** describen su estado, expresión, ropa, ubicación o cualquier otra característica.
-
-Por ejemplo **si quieres hacerlo manualmente**:
+Por ejemplo:
 
 ```renpy
 image yuri casual happy = "images/sprites/yuri/casual_happy.png"
@@ -235,9 +196,7 @@ image yuri casual happy = "images/sprites/yuri/casual_happy.png"
 En este caso:
 
 - **Etiqueta:** `yuri`
-    
 - **Atributos:** `casual` y `happy`
-    
 
 Otro ejemplo:
 
@@ -248,49 +207,47 @@ image monika school angry = "images/sprites/monika/school_angry.png"
 Aquí Ren'Py interpreta:
 
 - **Etiqueta:** `monika`
-    
 - **Atributos:** `school` y `angry`
-    
 
 Fíjate que **los espacios son importantes**. Cada palabra forma parte del nombre de la imagen y Ren'Py las interpreta como una etiqueta seguida de uno o más atributos.
 
-Esto permite que el motor entienda qué personaje estás mostrando y cuáles son sus características sin necesidad de utilizar nombres gigantes como:
+### Registro automático de imágenes
+
+Hay una característica de Ren'Py que muchos desarrolladores principiantes pasan por alto.
+
+Si guardas tus imágenes dentro de la carpeta `game/images`, **Ren'Py las registrará automáticamente**, por lo que no será necesario definirlas manualmente con la sentencia `image`.
+
+Por ejemplo, este archivo:
+
+![ejemplo de definición automática|697](images/definicion-automatica.png)
+
+```
+game/images/sprites/eileen/Eileen neutral.png
+```
+
+se registrará automáticamente como:
 
 ```renpy
-image monika_school_uniform_angry_expression = "images/sprites/monika/school_angry.png"
+image eileen neutral
 ```
 
-En su lugar, basta con escribir:
+Esto reduce la cantidad de código que debes escribir y hace que tu proyecto sea mucho más fácil de mantener.
+
+**Mi recomendación**:
+
+Utiliza nombres **descriptivos y consistentes** para tus imágenes, audios y variables. Puede parecer un detalle sin importancia cuando el proyecto es pequeño, pero conforme crezca agradecerás poder identificar cada recurso con solo leer su nombre.
+
+Como puedes ver, mi *sprite* está guardado dentro de `game/images/sprites/eileen/`. No he definido la imagen con la sentencia `image`, porque Ren'Py la registrará automáticamente.
+
+Para que esto funcione correctamente, el nombre del archivo debe seguir el formato **etiqueta atributo**, separados por un espacio. En este ejemplo, `Eileen` es la **etiqueta** (*tag*) y `neutral` es el **atributo** (*attribute*).
 
 ```renpy
-image monika school angry = "images/sprites/monika/school_angry.png"
+image eileen neutral
 ```
 
-Otro ejemplo. **Si no quieres escribir la declaración manualmente**, puedes aprovechar el nombre del propio archivo.
+#### Importante
 
-Supongamos que tienes el siguiente sprite en **images** nombrado como:
-
-```text
-Yuri Happy.png
-```
-
-
-- `yuri` será la **etiqueta**.
-    
-- `happy` será el **atributo**.
-    
-
-Después podrás mostrarla utilizando la sentencia **`show`** seguida del nombre de la imagen.
-
-```renpy
-show yuri happy
-```
-
-No te preocupes si todavía no entiendes qué hace la sentencia **`show`**. Más adelante la veremos en profundidad.
-
-**IMPORTANTE**
-
-Ren'Py **no distingue entre mayúsculas y minúsculas en el nombre de las imágenes que registras**. Internamente convierte el nombre de la imagen a minúsculas.
+Ren'Py **no distingue entre mayúsculas y minúsculas** al registrar imágenes. Internamente convierte el nombre a minúsculas.
 
 Por ejemplo, estas definiciones son equivalentes:
 
@@ -302,139 +259,58 @@ image Yuri Happy = "images/sprites/yuri/Yuri_Happy.png"
 image yuri happy = "images/sprites/yuri/Yuri_Happy.png"
 ```
 
-Y en ambos casos la imagen se muestra exactamente igual:
+En ambos casos la imagen se muestra de la misma forma:
 
 ```renpy
 show yuri happy
 ```
 
-Aun así, **te recomiendo escribir siempre las etiquetas y los atributos en minúsculas**. Es una buena práctica que hará tu código más consistente y fácil de leer.
-Quizá ahora te estés preguntando...
+Aun así, te recomiendo escribir siempre las etiquetas y los atributos en minúsculas para mantener un código consistente y fácil de leer.
 
-> **¿Y para qué sirve todo esto?**
+### ¿Por qué usar etiquetas y atributos?
 
-La respuesta es: **te ayudará muchísimo más adelante**, cuando empieces a cambiar las expresiones y poses de tus personajes.
-
-Gracias al sistema de **etiquetas** y **atributos**, Ren'Py sabe que todas estas imágenes pertenecen al mismo personaje:
-
-```
-image yuri happy = "images/sprites/yuri/happy.png"
-image yuri sad = "images/sprites/yuri/sad.png"
-image yuri angry = "images/sprites/yuri/angry.png"
-```
-
-Entonces, si Yuri ya está en pantalla y escribes:
-
-```
-show yuri happy
-
-y "¡Hola!"
-```
-
-Más adelante podrás cambiar su expresión simplemente haciendo:
-
-```
-show yuri sad
-
-y "No me siento muy bien..."
-```
-
-Ren'Py reemplazará automáticamente la imagen anterior porque ambas comparten la misma **etiqueta** (`yuri`).
-
-Esto tiene una ventaja enorme: **no tendrás que ocultar al personaje cada vez que cambie de expresión.**
-
-Existe la instrucción `hide`, cuya función es quitar una imagen de la pantalla.
+La principal ventaja es que Ren'Py puede cambiar automáticamente la imagen de un personaje sin que tengas que ocultarla primero.
 
 Por ejemplo:
 
-```
-hide yuri
-```
-
-Después tendrías que volver a mostrarla:
-
-```
-show yuri sad
-```
-
-Aunque esto funciona perfectamente, **no es la forma más habitual de trabajar** cuando simplemente quieres cambiar la expresión, la ropa o la pose de un personaje.
-
-Lo normal es dejar que Ren'Py haga el trabajo por ti gracias a las **etiquetas** y los **atributos**.
-
-Generalmente `hide` se utiliza cuando realmente quieres que un personaje desaparezca de la escena, cuando vas a mostrar un **CG**, cuando cambias de escenario o cuando el guion requiere que un elemento deje de estar visible.
-
-- `image` indica a Ren'Py que vas a registrar una imagen.
-- `etiqueta atributo otro_atributo` es el nombre con el que posteriormente podrás referirte a ella.
-- `=` asigna un recurso a ese nombre.
-- `"ruta/del/archivo.png"` indica dónde se encuentra el archivo dentro de tu proyecto.
-
-Por ejemplo:
-
-```
-image yuri happy = "images/sprites/yuri/happy.png"
-```
-
-En este caso ocurre lo siguiente:
-
-- La **etiqueta** es `yuri`.
-- El **atributo** es `happy`.
-- El archivo que utilizará Ren'Py es `images/sprites/yuri/happy.png`.
-
-## Sentencia show y hide
-
-Una vez registrada la imagen, podrás mostrarla cuando quieras con la sentencia `show`.
-
-```
+```renpy
 show yuri happy
 ```
 
-Ren'Py buscará la imagen llamada `yuri happy` y mostrará el archivo que registraste anteriormente.
+Más adelante basta con escribir:
 
----
-
-Si después defines otra imagen del mismo personaje:
-
-```
-image yuri sad = "images/sprites/yuri/sad.png"
-```
-
-Podrás cambiar la expresión simplemente escribiendo:
-
-```
+```renpy
 show yuri sad
 ```
 
-Como ambas imágenes tienen la misma **etiqueta** (`yuri`), Ren'Py reemplazará automáticamente la expresión anterior por la nueva.
+Como ambas imágenes comparten la etiqueta `yuri`, Ren'Py reemplazará automáticamente la expresión anterior por la nueva.
 
-Gracias a este sistema, normalmente **no es necesario utilizar** `hide` para cambiar la expresión de un personaje.
+Gracias a este sistema, normalmente **no es necesario utilizar `hide` para cambiar la expresión, la pose o la ropa de un personaje.**
 
-Por ejemplo, esta forma funciona:
+### Sentencias `show` y `hide`
 
+Una vez registrada una imagen, puedes mostrarla con la sentencia `show`.
+
+```renpy
+show yuri happy
 ```
+
+Y eliminarla de la pantalla con:
+
+```renpy
 hide yuri
-show yuri sad
 ```
 
-Pero es innecesaria.
-
-Lo habitual es escribir simplemente:
-
-```
-show yuri sad
-```
-
-Ren'Py ocultará la imagen anterior y mostrará la nueva automáticamente porque ambas pertenecen a la misma etiqueta.
-
-La sentencia `hide` suele reservarse para situaciones donde realmente quieres que una imagen desaparezca de la pantalla. Por ejemplo:
+Generalmente `hide` se utiliza cuando realmente quieres que un personaje desaparezca de la escena, por ejemplo:
 
 - Cuando un personaje abandona la escena.
-- Antes de mostrar un **CG**.
+- Antes de mostrar un CG.
 - Al cambiar de escenario.
 - Cuando un elemento ya no debe permanecer visible.
 
 ---
 
-## ¿Y si no quiero usar la sentencia `image`?
+### ¿Y si no quiero usar la sentencia `image`?
 
 También es completamente válido mostrar un archivo indicando su ruta directamente.
 
