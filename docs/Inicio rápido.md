@@ -171,7 +171,7 @@ d "Nos veremos la próxima semana."
 Como regla general, piensa que **`Character()`** está para hacerte la vida más fácil. Cuanto más aparezca un personaje en tu juego, más sentido tendrá definirlo con esta función.
 
 
-%%Explicar parámetros más útiles  en Character(%%
+
 ### Definiendo imágenes
 
 #### Sentencia `image`
