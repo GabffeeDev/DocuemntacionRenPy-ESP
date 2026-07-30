@@ -174,6 +174,8 @@ Como regla general, piensa que **`Character()`** está para hacerte la vida más
 
 ### Definiendo imágenes
 
+Ren'py permite estas extensiones **.jpg, .jpeg, .png, .webp, .avif, y .svg**.
+
 #### Sentencia `image`
 
 Para que Ren'Py pueda mostrar una imagen, **primero debes registrarla** mediante la sentencia `image`.
@@ -312,7 +314,6 @@ Generalmente `hide` se utiliza cuando realmente quieres que un personaje desapar
 - Cuando un elemento ya no debe permanecer visible.
 
 ---
-
 #### ¿Y si no quiero usar la sentencia `image`?
 
 También es completamente válido mostrar un archivo indicando su ruta directamente.
@@ -327,3 +328,13 @@ Muchos desarrolladores utilizan este método para imágenes que solo aparecerán
 
 Sin embargo, para personajes que cambiarán constantemente de expresión, la sentencia `image` resulta mucho más cómoda y mantiene el código limpio y organizado.
 
+### Definiendo Audio
+
+Ren'Py permite reproducir música y efectos de sonido en segundo plano, utilizando los siguientes formatos de archivo de audio:
+
+- Opus
+- Ogg Vorbis
+- MP3
+- MP2
+- FLAC
+- WAV (solo PCM de 16 bits sin comprimir)
