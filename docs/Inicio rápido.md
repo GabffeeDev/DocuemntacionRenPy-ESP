@@ -328,13 +328,265 @@ Muchos desarrolladores utilizan este método para imágenes que solo aparecerán
 
 Sin embargo, para personajes que cambiarán constantemente de expresión, la sentencia `image` resulta mucho más cómoda y mantiene el código limpio y organizado.
 
-### Definiendo Audio
+### Audio
 
-Ren'Py permite reproducir música y efectos de sonido en segundo plano, utilizando los siguientes formatos de archivo de audio:
+Ren’Py permite reproducir música, efectos de sonido y voces durante el juego. Es uno de los sistemas más importantes en una novela visual, ya que la música crea la atmósfera y los efectos de sonido hacen que las escenas se sientan más vivas.
 
-- Opus
-- Ogg Vorbis
-- MP3
-- MP2
-- FLAC
-- WAV (solo PCM de 16 bits sin comprimir)
+#### Formatos de audio compatibles
+
+Ren’Py soporta los siguientes formatos:
+
+- **Opus**
+- **Ogg Vorbis (.ogg)**
+- **MP3**
+- **MP2**
+- **FLAC**
+- **WAV** (solo PCM de 16 bits sin comprimir)
+
+Aunque todos funcionan, **mi recomendación es usar `.ogg`**, especialmente para proyectos de Ren’Py y videojuegos.
+
+#### ¿Por qué usar `.ogg`?
+
+Ogg Vorbis ofrece un excelente equilibrio entre **calidad de audio, tamaño del archivo y compatibilidad**.
+
+##### Ventajas
+
+- **Archivos más pequeños** que WAV.
+- **Muy buena calidad de sonido**.
+- **Carga rápida** dentro del juego.
+- **Compatibilidad nativa** con Ren’Py.
+
+Por ejemplo, una canción de fondo de 3 minutos puede ocupar:
+
+|Formato|Tamaño aproximado|
+|---|---|
+|WAV|30–40 MB|
+|MP3|4–6 MB|
+|OGG|3–5 MB|
+
+Para una novela visual con muchas canciones y efectos, la diferencia puede ser grande, pero puedes usar `.mp3` si así lo deseas, recuerda que esto es únicamente una recomendación .
+
+#### Nombres en automático (Variables)
+
+De igual manera que con las imágenes si tú tienes:
+
+```
+game/audio/opening.ogg
+```
+
+Puedes reproducirlo directamente así:
+
+```
+play music opening
+```
+
+Sin escribir la extensión `.ogg`.
+
+Ren’Py convierte el nombre del archivo a minúsculas y lo registra automáticamente.
+
+*Recuerda que esto solo sirve si estas en la carpeta `game`.*
+
+#### Definiendo audio
+
+Si por alguna razón no deseas usar el registro de nombres automático con Ren'py puedes definir el audio tal que así:
+
+```
+define audio.ladrido = "ruta_de/el_audio/ladrido.mp3"
+
+# Y lo usas así
+
+play sound ladrido
+
+```
+
+**Esto sirve para todos los canalés de audio.** ->
+#### Los canales de audio
+
+Ren’Py organiza el sonido mediante **canales**. Cada canal tiene un propósito específico.
+
+#### Canal `music`
+
+Se utiliza para la **música de fondo (BGM)**.
+
+Normalmente reproduce una sola canción y esta se repite automáticamente en bucle.
+
+```
+play music "opening.ogg"
+```
+
+#### Canal `sound`
+
+Está pensado para **efectos de sonido (SFX)**.
+
+Cuando reproduces un nuevo sonido en este canal, reemplaza al anterior y una vez termina su reproducción se detiene..
+
+```
+play sound "door_close.ogg"
+```
+
+#### Canal `audio`
+
+Este canal permite reproducir **varios sonidos al mismo tiempo**.
+
+Es útil para ambientes complejos, como lluvia, viento y tráfico simultáneamente.
+
+```
+play audio "rain.ogg"
+play audio "wind.ogg"
+play audio "traffic.ogg"
+```
+
+Los tres sonidos se reproducirán de forma simultánea. ¡Puedes armar tus playlist de novela visual! _Eso si no admite poner en cola el sonido ni detener la reproducción y por su puesto tampoco se repite en bucle._
+
+#### Canal `voice`
+
+Está diseñado para **voces de los personajes**.
+
+Ren’Py puede reproducir y detener automáticamente las voces cuando los personajes hablan.
+
+```
+voice "sayori_001.ogg"
+
+s "¡Buenos días!"
+```
+
+Además, el volumen del canal de voz puede controlarse desde las preferencias del juego.
+
+#### Dónde colocar los archivos
+
+Lo más recomendable es guardar todo el audio dentro de la carpeta `game`:
+
+```
+game/audio/
+```
+
+Una estructura organizada podría verse así:
+
+```
+game/
+└── audio/
+    ├── music/
+    │   ├── opening.ogg
+    │   └── sad_theme.ogg
+    ├── sfx/
+    │   ├── door.ogg
+    │   └── rain.ogg
+    └── voice/
+        ├── sayori/
+        └── yuri/
+```
+
+Luego puedes reproducir los archivos indicando su ruta:
+
+```
+play music "music/opening.ogg"
+play sound "sfx/door.ogg"
+```
+
+#### Sentencia `play`
+
+La instrucción más común es `play`.
+
+```
+play music "opening.ogg"
+```
+
+Si ya había otra canción reproduciéndose, será reemplazada.
+
+#### Fundidos (fade)
+
+Puedes hacer que la música entre y salga suavemente.
+
+```
+play music "opening.ogg" fadein 2.0
+```
+
+La música tardará **2 segundos** en alcanzar el volumen normal.
+
+Para cambiar una canción suavemente:
+
+```
+play music "sad_theme.ogg" fadeout 1.0 fadein 2.0
+```
+
+Esto desvanece la canción anterior durante 1 segundo y la nueva entra durante 2 segundos.
+
+**En resumen fadein es de ingreso y fadeout es de salida.**
+
+#### Reproducir una lista de canciones
+
+Puedes poner varias canciones en secuencia.
+
+```
+play music [
+    "opening.ogg",
+    "theme.ogg",
+    "ending.ogg"
+]
+```
+
+Cuando termine una, comenzará la siguiente.
+
+#### Evitar reiniciar una canción
+
+A veces entras varias veces a una misma pantalla y no quieres que la música vuelva a empezar.
+
+Usa `if_changed`.
+
+```
+play music opening if_changed
+```
+
+Si `opening` ya está sonando, Ren’Py continuará reproduciéndola sin reiniciarla.
+
+#### Ajustar el volumen de un sonido
+
+Puedes cambiar el volumen de una reproducción específica.
+
+```
+play sound "door.ogg" volume 0.5
+```
+
+Los valores van de:
+
+- `0.0` = silencio
+- `1.0` = volumen normal
+
+Esto es muy útil para sonidos lejanos o ambientales.
+
+#### Sentencia `stop`
+
+Para detener un canal:
+
+```
+stop music
+```
+
+Con fundido:
+
+```
+stop music fadeout 1.5
+```
+
+La música desaparecerá gradualmente durante 1.5 segundos.
+
+También funciona con otros canales.
+
+```
+stop sound
+stop voice
+```
+
+#### Una configuración recomendada para principiantes
+
+Para evitar problemas de organización, te recomiendo esta regla:
+
+- **Música:** `.ogg`
+- **Efectos de sonido:** `.ogg`
+- **Voces:** `.ogg`
+- **Archivos originales de edición:** `.wav`
+
+Edita el audio en WAV si necesitas máxima calidad y luego exporta una versión `.ogg` para el juego.
+
+Un dato curioso: **Ogg es el contenedor y Vorbis es el códec de compresión**. Por eso, cuando hablamos de archivos `.ogg`, en realidad normalmente nos referimos a **Ogg Vorbis**, ¡El formato de audio que Ren’Py utiliza con mayor frecuencia en **videojuegos** y n**ovelas visuales**!.
+
