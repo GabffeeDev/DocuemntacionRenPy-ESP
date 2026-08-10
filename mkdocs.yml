@@ -32,6 +32,11 @@ theme:
 extra_css:
   - stylesheets/extra.css
 
+extra:
+  analytics:
+    provider: google
+    property: G-XXXXXXXXXX
+
 nav:
   - Bienvenida: index.md
   - Inicio Rápido: Inicio rápido.md
