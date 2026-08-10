@@ -328,6 +328,7 @@ Muchos desarrolladores utilizan este método para imágenes que solo aparecerán
 
 Sin embargo, para personajes que cambiarán constantemente de expresión, la sentencia `image` resulta mucho más cómoda y mantiene el código limpio y organizado.
 
+---
 ### Audio
 
 Ren’Py permite reproducir música, efectos de sonido y voces durante el juego. Es uno de los sistemas más importantes en una novela visual, ya que la música crea la atmósfera y los efectos de sonido hacen que las escenas se sientan más vivas.
