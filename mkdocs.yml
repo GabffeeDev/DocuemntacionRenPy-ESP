@@ -35,7 +35,7 @@ extra_css:
 extra:
   analytics:
     provider: google
-    property: G-XXXXXXXXXX
+    property: G-PQZ2KT1TZ5
 
 nav:
   - Bienvenida: index.md
