@@ -93,6 +93,49 @@ Al abrir **`script.rpy`**, encontrarás un contenido similar al siguiente:
 
 ![Archivo script.rpy abierto desde el launcher de Ren'Py](images/script-rpy.png)
 
+
+### Líneas de diálogo
+
+#### El narrador
+
+Cuando escribes un texto entre comillas **sin poner un personaje antes**, Ren’Py entiende que el narrador está hablando.
+
+```
+label start:
+
+    "La habitación estaba completamente vacía."
+
+    "El viento golpeaba las ventanas."
+
+    return
+```
+
+#### Un personaje
+
+Primero debes crear el personaje.
+
+```
+define y = Character("Yuri")
+```
+
+Después puedes usar la variable `y` para hacer que hable.
+
+```
+label start:
+
+    y "Hola."
+
+    y "Me alegra verte."
+
+    return
+```
+
+Resultado:
+
+**Yuri**
+
+> Hola.  
+> Me alegra verte.
 ### Definir personajes
 
 Como puedes observar en **`script.rpy`**, estamos utilizando la función **`Character()`**, la cual se asigna a la variable **`e`**, correspondiente a **Eileen**. Esta función recibe como parámetro una **cadena de texto** (`string`) con el valor **`"Eileen"`**, que será el nombre que aparecerá en la caja de diálogo del juego cada vez que el personaje hable.
