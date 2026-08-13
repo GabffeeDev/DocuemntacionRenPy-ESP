@@ -139,12 +139,6 @@ define e = Character("Eileen")
 
 Puedes ponerle **el nombre que quieras** a una variable, aunque lo recomendable es que sea corto o una abreviatura, ya que esa variable solo la utilizarás **tú** como programador o programadora.
 
-Así que... **¡hazlo lo más cómodo posible!**
-
-No te preocupes si todavía no entiendes qué es una variable o cómo funciona la programación. No es un concepto complicado y lo irás comprendiendo conforme avances en esta guía.
-
-Aun así, **sí te recomendaría aprender un poquito de Python**. No es obligatorio para hacer una novela visual, pero créeme, te ayudará muchísimo cuando quieras hacer cosas más avanzadas.
-
 Como dato curioso, la función **`Character()`** te ahorra muchísimo tiempo, ya que evita que tengas que escribir el nombre del personaje cada vez que habla.
 
 Por ejemplo, usando `Character()` escribirías:
@@ -168,7 +162,7 @@ label start:
 
     "Yuri" "Hola."
     "Yuri" "¿Cómo estás?"
-    "Yuri" "Espero que tengas un buen día."
+    "Yuri" "Estresado por que tengo que escribir todo el nombre de este pj."
 ```
 
 Como puedes notar, el nombre **"Yuri"** debe escribirse en cada línea de diálogo. No es un problema cuando el personaje habla una o dos veces, pero si aparece durante toda la historia terminarás escribiendo su nombre cientos de veces.
@@ -202,6 +196,25 @@ d "Nos veremos la próxima semana."
 ```
 
 Como regla general, piensa que **`Character()`** está para hacerte la vida más fácil. Cuanto más aparezca un personaje en tu juego, más sentido tendrá definirlo con esta función.
+
+#### Resumen
+
+```
+define e = Character("Eileen")
+```
+
+- `e` es el **nombre interno** que tú escribirás en el código.
+- `"Eileen"` es el **nombre que verá el jugador** en la caja de diálogo.
+
+Cuando escribes:
+
+```
+e "Hola."
+```
+
+Ren'Py muestra:
+
+**Eileen:** Hola.
 
 ---
 ### Definiendo imágenes
