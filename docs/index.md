@@ -1,19 +1,49 @@
-# A quienes se atreven a crear
+# ¿Quieres desarrollar una novela visual?
 
-Desarrollar una novela visual es un acto de **valentía.**
+Eres **valiente.**
 
-Es decidir convertir una idea invisible en una experiencia que otras personas podrán sentir. Es enfrentarse a una página en blanco sin tener la certeza de que algún día habrá una versión terminada. Es aprender programación, escritura, narrativa, diseño, música, arte y muchas otras habilidades, nadie lo exige, pero existe el deseo de contar una historia.
+Durante este trayecto te enfrentarás a diversas páginas en blanco sin tener la seguridad de que algún día realmente podrías terminar un juego. 
 
-Habrá días en los que el progreso te parezca insignificante. Días en los que un solo error ocupe horas de trabajo, o en los que una escena no consiga transmitir lo que imaginabas. Es parte del camino.
+Aprenderás por tu cuenta programación, escritura, narrativa, diseño, música, arte y muchas otras disciplinas que seguramente te demores unos meses en desarrollar.
 
-Cada línea de código escrita, cada diálogo revisado y cada problema resuelto son pasos hacia una obra que antes no existía. No importa si tu proyecto es pequeño o ambicioso; el simple hecho de intentarlo ya te coloca entre quienes decidieron crear en lugar de limitarse a observar.
+**"Espero que tu deseo de plasmar tu mente en una historia supere cualquier obstáculo."**
 
-Si esta documentación puede ayudarte a dar ese siguiente paso, entonces habrá cumplido su propósito.
+Eres **valiente** porque habrá días en el que te querrás rendir. 
+
+Días en los que un solo error ocupe gran parte de tu tiempo, o días que una idea de tu novela visual no consiga transmitir lo que tu querías. 
+
+*O tal vez simplemente no sea tu día ideal.*
+
+*Todo esto es parte de desarrollar una novela visual.*
+
+**¡No te agobies :D!**
+
+Cada día que escribas una línea de código, que reescribas un diálogo, lo revises y resuelvas un problema de tu novela...
+
+Te acercarás más al objetivo de este camino.
+
+**Trata de ir con calma, porque todo necesita su tiempo.**
+
+Y seré realista, **el camino es largo.**
+
+Soy alguien común escribiendo esta documentación, **tal vez tú tengas mucho potencial no descubierto**, tal vez ya sabes dibujar y escribir, y tan solo te falta mejorar en Ren'py.
+
+Para eso estoy aquí. No soy ningún experto, pero no me gustaría quedarme de brazos cruzados.
+
+**¡Quiero que más gente conozca las novelas visuales!**
+
+Si esta documentación te ayuda en Ren'py...
+
+**Entonces habré cumplido mi propósito.**
 
 ***Sigue aprendiendo.***
 
 ***Sigue creando.***
 
-Y, sobre todo, **no dejes que el miedo a no ser perfecto impida que tu historia llegue a existir.**
+**Sigue imaginando**
 
-[Ir a Inicio Rápido](Inicio%20rápido.md)
+Y, también **"no dejes que el perfeccionismo impida que cumplas tu objetivo."**
+
+"*Pequeñas mejoras, realizadas de forma constante, producen grandes resultados.*" **Kaizen (改善)**
+
+

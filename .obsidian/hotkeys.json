@@ -1,0 +1,10 @@
+{
+  "languagetool:accept-all": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "A"
+    }
+  ]
+}

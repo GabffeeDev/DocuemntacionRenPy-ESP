@@ -1,0 +1,1 @@
+[Inicio Rápido](Inicio%20rápido.md)

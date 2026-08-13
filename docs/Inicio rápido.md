@@ -24,6 +24,7 @@ Lo más importante es que la resolución del proyecto coincida con la de las im�
 
 ![Launcher de Ren'Py mostrando la creación de un proyecto](images/renpy-launcher.png)
 
+---
 ## Configurar las preferencias
 
 En **Preferencias** puedes elegir la carpeta donde se guardarán todos tus proyectos.
@@ -36,6 +37,7 @@ Además, te recomiendo instalar **Visual Studio Code** y configurarlo como edito
 
 ![Preferencias de Ren'Py con opciones de carpeta de proyectos y editor](images/renpy-preferencias.png)
 
+---
 ## Conociendo la estructura del proyecto
 
 Una vez creado el proyecto (en este ejemplo llamado **NuevoProyecto**), observarás que en la sección **Editar archivo** aparecen varios archivos con la extensión `.rpy`. Estos contienen el código de tu novela visual.
@@ -44,6 +46,7 @@ Por ahora no nos centraremos en ellos. Lo importante es la sección **Abrir carp
 
 ![Estructura inicial del proyecto en el launcher de Ren'Py](images/estructura-proyecto.png)
 
+---
 ## Organizando los recursos
 
 Antes de comenzar a programar la historia, lo habitual es importar todos los recursos del proyecto. Desde el principio intenta mantener una estructura organizada.
@@ -80,6 +83,7 @@ Esta pequeña organización hará que encontrar un recurso específico sea mucho
 
 ¡Una vez terminado de organizar tus recursos ya podemos empezar a programar!
 
+---
 ## Programar en Ren'py
 
 **A partir de aquí aprenderás todo lo necesario para empezar a programar tu novela visual. Es sencillo, ¡no te desanimes!**
@@ -93,7 +97,7 @@ Al abrir **`script.rpy`**, encontrarás un contenido similar al siguiente:
 
 ![Archivo script.rpy abierto desde el launcher de Ren'Py](images/script-rpy.png)
 
-
+---
 ### Líneas de diálogo
 
 #### El narrador
@@ -136,6 +140,8 @@ Resultado:
 
 > Hola.  
 > Me alegra verte.
+
+---
 ### Definir personajes
 
 Como puedes observar en **`script.rpy`**, estamos utilizando la función **`Character()`**, la cual se asigna a la variable **`e`**, correspondiente a **Eileen**. Esta función recibe como parámetro una **cadena de texto** (`string`) con el valor **`"Eileen"`**, que será el nombre que aparecerá en la caja de diálogo del juego cada vez que el personaje hable.
@@ -213,8 +219,7 @@ d "Nos veremos la próxima semana."
 
 Como regla general, piensa que **`Character()`** está para hacerte la vida más fácil. Cuanto más aparezca un personaje en tu juego, más sentido tendrá definirlo con esta función.
 
-
-
+---
 ### Definiendo imágenes
 
 Ren'py permite estas extensiones **.jpg, .jpeg, .png, .webp, .avif, y .svg**.
@@ -355,8 +360,6 @@ Generalmente `hide` se utiliza cuando realmente quieres que un personaje desapar
 - Antes de mostrar un CG.
 - Al cambiar de escenario.
 - Cuando un elemento ya no debe permanecer visible.
-
----
 #### ¿Y si no quiero usar la sentencia `image`?
 
 También es completamente válido mostrar un archivo indicando su ruta directamente.
@@ -402,11 +405,11 @@ Ogg Vorbis ofrece un excelente equilibrio entre **calidad de audio, tamaño del 
 
 Por ejemplo, una canción de fondo de 3 minutos puede ocupar:
 
-|Formato|Tamaño aproximado|
-|---|---|
-|WAV|30–40 MB|
-|MP3|4–6 MB|
-|OGG|3–5 MB|
+| Formato | Tamaño aproximado |
+| ------- | ----------------- |
+| WAV     | 30–40 MB          |
+| MP3     | 4–6 MB            |
+| OGG     | 3–5 MB            |
 
 Para una novela visual con muchas canciones y efectos, la diferencia puede ser grande, pero puedes usar `.mp3` si así lo deseas, recuerda que esto es únicamente una recomendación .
 
@@ -428,7 +431,7 @@ Sin escribir la extensión `.ogg`.
 
 Ren’Py convierte el nombre del archivo a minúsculas y lo registra automáticamente.
 
-*Recuerda que esto solo sirve si estas en la carpeta `game`.*
+*Recuerda que esto solo sirve si el archivo de audio esta en la carpeta `game`.*
 
 #### Definiendo audio
 

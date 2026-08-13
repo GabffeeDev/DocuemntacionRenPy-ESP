@@ -39,4 +39,5 @@ extra:
 
 nav:
   - Bienvenida: index.md
+  - Índice: Índice.md
   - Inicio Rápido: Inicio rápido.md
