@@ -634,3 +634,85 @@ Edita el audio en WAV si necesitas máxima calidad y luego exporta una versión 
 
 Un dato curioso: **Ogg es el contenedor y Vorbis es el códec de compresión**. Por eso, cuando hablamos de archivos `.ogg`, en realidad normalmente nos referimos a **Ogg Vorbis**, ¡El formato de audio que Ren’Py utiliza con mayor frecuencia en **videojuegos** y n**ovelas visuales**!.
 
+---
+### Animaciones y transformaciones con ATL
+
+**¡Atento!... o atenta.**
+
+ATL será realmente útil para tu novela visual, ya que te permitirá posicionar cualquier elemento (sprite o imagen) en prácticamente cualquier lugar de la pantalla.
+
+Por ahora, solo hablaré de las animaciones que el motor tiene por defecto, así como de las diferentes formas de posicionar elementos en pantalla.
+
+*A continuación, puedes ver dónde colocará cada una de estas transformaciones una imagen.*
+
+![Ejemplo ATL|700](images/ATL.png)
+
+**Dato curioso:** `center` y `default` hacen esencialmente lo mismo: colocan el elemento en el centro horizontal de la pantalla. `reset`, por su parte, devuelve las propiedades de transformación a sus valores predeterminados.
+
+#### Cláusula AT
+
+La cláusula **`at`** se utiliza para aplicar una **transformación** a una imagen cuando la muestras en pantalla.
+
+La estructura básica es:
+
+```
+show + imagen + at + nombre_de_la_transformacion
+```
+
+Por ejemplo:
+
+```
+show eileen happy at right(o cualquier transformación por defecto.)
+```
+
+Aquí:
+
+- `show` → indica que queremos mostrar una imagen.
+- `eileen happy` → es la imagen que queremos mostrar.
+- `at` → indica que vamos a aplicar una transformación.
+- `right` → es la transformación que queremos aplicar.
+
+*Puedes crear tus propias posiciones de imagen, pero eso es más avanzado, más adelante lo veremos.*
+#### Posiciones por defecto
+
+| Posición                 | Descripción                                                                                                                             |
+| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------- |
+| **`center` / `default`** | Centra horizontalmente y alinea el elemento con la parte inferior de la pantalla.                                                       |
+| **`left`**               | Alinea el elemento con la esquina inferior izquierda de la pantalla.                                                                    |
+| **`offscreenleft`**      | Coloca el elemento fuera del lado izquierdo de la pantalla, alineándolo con la parte inferior de esta.                                  |
+| **`offscreenright`**     | Coloca el elemento fuera del lado derecho de la pantalla, alineándolo con la parte inferior de esta.                                    |
+| **`reset`**              | Restablece la transformación a los valores predeterminados de cada propiedad, eliminando cualquier propiedad establecida anteriormente. |
+| **`right`**              | Alinea el elemento con la esquina inferior derecha de la pantalla.                                                                      |
+| **`top`**                | Centra horizontalmente y alinea el elemento con la parte superior de la pantalla.                                                       |
+| **`topleft`**            | Alinea el elemento con la esquina superior izquierda de la pantalla.                                                                    |
+| **`topright`**           | Alinea el elemento con la esquina superior derecha de la pantalla.                                                                      |
+| **`truecenter`**         | Centra el elemento tanto horizontal como verticalmente.                                                                                 |
+
+#### Transiciones por defecto
+
+|Transición|Descripción|
+|---|---|
+|**`dissolve`**|Cambia suavemente de una escena a otra mediante un efecto de disolución. Dura **0,5 segundos**.|
+|**`fade`**|Hace que la pantalla se desvanezca a negro y luego muestre gradualmente la nueva escena.|
+|**`pixellate`**|Cambia de una escena a otra mediante un efecto de pixelado.|
+|**`move`**|Mueve suavemente las imágenes desde su posición actual hasta una nueva posición.|
+|**`moveinright`**|Hace que una imagen entre en la pantalla desde la derecha. También existen `moveinleft`, `moveintop` y `moveinbottom`.|
+|**`moveoutright`**|Hace que una imagen salga de la pantalla hacia la derecha. También existen `moveoutleft`, `moveouttop` y `moveoutbottom`.|
+|**`ease`**|Funciona de manera similar a `move`, pero el movimiento comienza y termina de forma más suave. También existen variantes para cada dirección.|
+|**`zoomin`**|Hace que una imagen aparezca mediante un efecto de acercamiento o **zoom**.|
+|**`zoomout`**|Hace que una imagen desaparezca mediante un efecto de alejamiento.|
+|**`zoominout`**|Combina ambos efectos: acerca la imagen que entra y aleja la imagen que sale.|
+|**`vpunch`**|Sacude rápidamente la pantalla de forma **vertical**.|
+|**`hpunch`**|Sacude rápidamente la pantalla de forma **horizontal**.|
+|**`blinds`**|Cambia de escena mediante un efecto similar al de unas **persianas verticales**.|
+|**`squares`**|Cambia de escena utilizando un efecto formado por **cuadrados**.|
+|**`wipeleft`**|Revela la nueva escena mediante un efecto de barrido hacia la izquierda. También existen `wiperight`, `wipeup` y `wipedown`.|
+|**`slideleft`**|Desliza la nueva escena hacia la pantalla desde la izquierda. También existen `slideright`, `slideup` y `slidedown`.|
+|**`slideawayleft`**|Desliza la escena actual fuera de la pantalla hacia la izquierda. También existen `slideawayright`, `slideawayup` y `slideawaydown`.|
+|**`pushright`**|La nueva escena entra desde la derecha, empujando a la escena anterior fuera de la pantalla. También existen `pushleft`, `pushup` y `pushdown`.|
+|**`irisin`**|Muestra la nueva escena mediante una abertura rectangular que se expande. También existe `irisout`, que realiza el efecto contrario.|
+
+*De igual manera, puedes crear tus propias animaciones, pero eso lo veremos más adelante ;D.*
+
+---
+
