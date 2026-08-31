@@ -1,5 +1,5 @@
 
-[Descarga Ren'py](https://www.renpy.org/latest.html)
+[Descarga Ren'Py](https://www.renpy.org/latest.html)
 ## Crear un proyecto en Ren'Py
 
 Al abrir el _Launcher_ de Ren'Py podrás **cambiar el idioma a español**, crear un proyecto nuevo y elegir su nombre y resolución.
@@ -52,6 +52,10 @@ Puede parecer una organización excesiva al principio, pero cuando el proyecto c
 
 ![Carpeta images organizada por tipo de recurso](images/carpeta-images.png)
 
+**Para los sprites de tu novela visual, te recomiendo que crees una carpeta de personaje que contenga los sprites. Por ejemplo: Carpeta -> "Yuri", y dentro de ella agregar los sprites.**
+
+---
+
 Con la carpeta `audio` ocurre lo mismo. Lo recomendable es separar la música de los efectos de sonido en carpetas independientes.
 
 Por ejemplo:
@@ -63,12 +67,10 @@ Por ejemplo:
 
 Esta pequeña organización hará que encontrar un recurso específico sea mucho más rápido a medida que tu proyecto aumente de tamaño.
 
-![Carpeta audio separada en music y sfx](images/carpeta-audio.png)
-
-¡Una vez terminado de organizar tus recursos ya podemos empezar a programar!
+![Estructura audio](images/carpeta-audio.png)
 
 ---
-## Programar en Ren'py
+## Programar en Ren'Py
 
 **A partir de aquí aprenderás todo lo necesario para empezar a programar tu novela visual. Es sencillo, ¡no te desanimes!**
 
@@ -88,7 +90,7 @@ Al abrir **`script.rpy`**, encontrarás un contenido similar al siguiente:
 
 Cuando escribes un texto entre comillas **sin poner un personaje antes**, Ren’Py entiende que el narrador está hablando.
 
-```
+```python
 label start:
 
     "La habitación estaba completamente vacía."
@@ -102,13 +104,13 @@ label start:
 
 Primero debes crear el personaje.
 
-```
+```python
 define y = Character("Yuri")
 ```
 
 Después puedes usar la variable `y` para hacer que hable.
 
-```
+```python
 label start:
 
     y "Hola."
@@ -133,7 +135,7 @@ Como puedes observar en **`script.rpy`**, estamos utilizando la función **`Char
 ![Ejemplo de definición de un personaje con Character|697](images/definir-character.png)
 
 
-```renpy
+```python
 define e = Character("Eileen")
 ```
 
@@ -143,7 +145,7 @@ Como dato curioso, la función **`Character()`** te ahorra muchísimo tiempo, ya
 
 Por ejemplo, usando `Character()` escribirías:
 
-```renpy
+```python
 define y = Character("Yuri")
 
 label start:
@@ -157,12 +159,12 @@ Observa que únicamente escribimos **`y`**, y Ren'Py ya sabe que el nombre que d
 
 Sin embargo, también es completamente válido escribir los diálogos sin definir un personaje:
 
-```renpy
+```python
 label start:
 
     "Yuri" "Hola."
     "Yuri" "¿Cómo estás?"
-    "Yuri" "Estresado por que tengo que escribir todo el nombre de este pj."
+    "Yuri" "Estresado porque tengo que escribir todo el nombre de este pj."
 ```
 
 Como puedes notar, el nombre **"Yuri"** debe escribirse en cada línea de diálogo. No es un problema cuando el personaje habla una o dos veces, pero si aparece durante toda la historia terminarás escribiendo su nombre cientos de veces.
@@ -173,7 +175,7 @@ Si un personaje solo aparecerá una vez o tendrá muy pocas líneas de diálogo,
 
 Por ejemplo:
 
-```renpy
+```python
 label start:
 
     "Doctor" "Los resultados ya están listos."
@@ -183,23 +185,12 @@ En este caso crear un personaje con `Character()` sería innecesario.
 
 En cambio, si ese doctor aparecerá varias veces a lo largo de la historia, entonces sí conviene definirlo:
 
-```renpy
+```python
 define d = Character("Doctor")
 ```
-
-Y utilizarlo de esta forma:
-
-```renpy
-d "Los resultados ya están listos."
-d "Necesitamos hacer más estudios."
-d "Nos veremos la próxima semana."
-```
-
-Como regla general, piensa que **`Character()`** está para hacerte la vida más fácil. Cuanto más aparezca un personaje en tu juego, más sentido tendrá definirlo con esta función.
-
 #### Resumen
 
-```
+```python
 define e = Character("Eileen")
 ```
 
@@ -208,7 +199,7 @@ define e = Character("Eileen")
 
 Cuando escribes:
 
-```
+```python
 e "Hola."
 ```
 
@@ -219,7 +210,7 @@ Ren'Py muestra:
 ---
 ### Definiendo imágenes
 
-Ren'py permite estas extensiones **.jpg, .jpeg, .png, .webp, .avif, y .svg**.
+Ren'Py permite estas extensiones: **.jpg, .jpeg, .png, .webp, .avif y .svg**.
 
 #### Sentencia `image`
 
@@ -227,7 +218,7 @@ Para que Ren'Py pueda mostrar una imagen, **primero debes registrarla** mediante
 
 Su sintaxis es la siguiente:
 
-```renpy
+```python
 image nombre_de_la_imagen = "ruta/del/archivo.png"
 ```
 
@@ -239,7 +230,7 @@ La **etiqueta** identifica al personaje o recurso principal, mientras que los **
 
 Por ejemplo:
 
-```renpy
+```python
 image yuri casual happy = "images/sprites/yuri/casual_happy.png"
 ```
 
@@ -250,7 +241,7 @@ En este caso:
 
 Otro ejemplo:
 
-```renpy
+```python
 image monika school angry = "images/sprites/monika/school_angry.png"
 ```
 
@@ -269,16 +260,16 @@ Si guardas tus imágenes dentro de la carpeta `game/images`, **Ren'Py las regist
 
 Por ejemplo, este archivo:
 
-![ejemplo de definición automática|697](images/definicion-automatica.png)
+![Ejemplo automático](images/definicion-automatica.png)
 
-```
-game/images/sprites/eileen/Eileen neutral.png
+```text
+game/images/yuri/sad.png
 ```
 
 se registrará automáticamente como:
 
-```renpy
-image eileen neutral
+```python
+image yuri sad
 ```
 
 Esto reduce la cantidad de código que debes escribir y hace que tu proyecto sea mucho más fácil de mantener.
@@ -287,12 +278,14 @@ Esto reduce la cantidad de código que debes escribir y hace que tu proyecto sea
 
 Utiliza nombres **descriptivos y consistentes** para tus imágenes, audios y variables. Puede parecer un detalle sin importancia cuando el proyecto es pequeño, pero conforme crezca agradecerás poder identificar cada recurso con solo leer su nombre.
 
-Como puedes ver, mi *sprite* está guardado dentro de `game/images/sprites/eileen/`. No he definido la imagen con la sentencia `image`, porque Ren'Py la registrará automáticamente.
+Como puedes ver, mi *sprite* está guardado dentro de `game/images/yuri/yuri sad/`. No he definido la imagen con la sentencia `image`, porque Ren'Py la registrará automáticamente.
 
 Para que esto funcione correctamente, el nombre del archivo debe seguir el formato **etiqueta atributo**, separados por un espacio. En este ejemplo, `Eileen` es la **etiqueta** (*tag*) y `neutral` es el **atributo** (*attribute*).
 
-```renpy
-image eileen neutral
+```python
+image yuri sad -> Atributo
+  |    |__ Atributo
+Etiqueta
 ```
 
 #### Importante
@@ -301,17 +294,17 @@ Ren'Py **no distingue entre mayúsculas y minúsculas** al registrar imágenes. 
 
 Por ejemplo, estas definiciones son equivalentes:
 
-```renpy
-image Yuri Happy = "images/sprites/yuri/Yuri_Happy.png"
+```python
+image Yuri Happy = "images/yuri/Yuri Happy.png"
 ```
 
-```renpy
-image yuri happy = "images/sprites/yuri/Yuri_Happy.png"
+```python
+image yuri happy = "images/yuri/Yuri Happy.png"
 ```
 
 En ambos casos la imagen se muestra de la misma forma:
 
-```renpy
+```python
 show yuri happy
 ```
 
@@ -323,13 +316,13 @@ La principal ventaja es que Ren'Py puede cambiar automáticamente la imagen de u
 
 Por ejemplo:
 
-```renpy
+```python
 show yuri happy
 ```
 
 Más adelante basta con escribir:
 
-```renpy
+```python
 show yuri sad
 ```
 
@@ -341,13 +334,13 @@ Gracias a este sistema, normalmente **no es necesario utilizar `hide` para cambi
 
 Una vez registrada una imagen, puedes mostrarla con la sentencia `show`.
 
-```renpy
+```python
 show yuri happy
 ```
 
 Y eliminarla de la pantalla con:
 
-```renpy
+```python
 hide yuri
 ```
 
@@ -361,7 +354,7 @@ Generalmente `hide` se utiliza cuando realmente quieres que un personaje desapar
 
 También es completamente válido mostrar un archivo indicando su ruta directamente.
 
-```
+```python
 show "images/sprites/yuri/happy.png"
 ```
 
@@ -408,19 +401,19 @@ Por ejemplo, una canción de fondo de 3 minutos puede ocupar:
 | MP3     | 4–6 MB            |
 | OGG     | 3–5 MB            |
 
-Para una novela visual con muchas canciones y efectos, la diferencia puede ser grande, pero puedes usar `.mp3` si así lo deseas, recuerda que esto es únicamente una recomendación .
+Para una novela visual con muchas canciones y efectos, la diferencia puede ser grande, pero puedes usar `.mp3` si así lo deseas; recuerda que esto es únicamente una recomendación.
 
 #### Nombres en automático (Variables)
 
-De igual manera que con las imágenes si tú tienes:
+De igual manera que con las imágenes, si tú tienes:
 
-```
+```text
 game/audio/opening.ogg
 ```
 
 Puedes reproducirlo directamente así:
 
-```
+```python
 play music opening
 ```
 
@@ -428,13 +421,13 @@ Sin escribir la extensión `.ogg`.
 
 Ren’Py convierte el nombre del archivo a minúsculas y lo registra automáticamente.
 
-*Recuerda que esto solo sirve si el archivo de audio esta en la carpeta `game`.*
+*Recuerda que esto solo sirve si el archivo de audio está en la carpeta `game`.*
 
 #### Definiendo audio
 
-Si por alguna razón no deseas usar el registro de nombres automático con Ren'py puedes definir el audio tal que así:
+Si por alguna razón no deseas usar el registro de nombres automático con Ren'Py, puedes definir el audio tal que así:
 
-```
+```python
 define audio.ladrido = "ruta_de/el_audio/ladrido.mp3"
 
 # Y lo usas así
@@ -443,7 +436,7 @@ play sound ladrido
 
 ```
 
-**Esto sirve para todos los canalés de audio.** ->
+**Esto sirve para todos los canales de audio.** ->
 #### Los canales de audio
 
 Ren’Py organiza el sonido mediante **canales**. Cada canal tiene un propósito específico.
@@ -454,7 +447,7 @@ Se utiliza para la **música de fondo (BGM)**.
 
 Normalmente reproduce una sola canción y esta se repite automáticamente en bucle.
 
-```
+```python
 play music "opening.ogg"
 ```
 
@@ -462,9 +455,9 @@ play music "opening.ogg"
 
 Está pensado para **efectos de sonido (SFX)**.
 
-Cuando reproduces un nuevo sonido en este canal, reemplaza al anterior y una vez termina su reproducción se detiene..
+Cuando reproduces un nuevo sonido en este canal, reemplaza al anterior y, una vez termina su reproducción, se detiene.
 
-```
+```python
 play sound "door_close.ogg"
 ```
 
@@ -474,13 +467,13 @@ Este canal permite reproducir **varios sonidos al mismo tiempo**.
 
 Es útil para ambientes complejos, como lluvia, viento y tráfico simultáneamente.
 
-```
+```python
 play audio "rain.ogg"
 play audio "wind.ogg"
 play audio "traffic.ogg"
 ```
 
-Los tres sonidos se reproducirán de forma simultánea. ¡Puedes armar tus playlist de novela visual! _Eso si no admite poner en cola el sonido ni detener la reproducción y por su puesto tampoco se repite en bucle._
+Los tres sonidos se reproducirán de forma simultánea. _Aclaración: no admite poner en cola el sonido ni detener la reproducción y, por supuesto, tampoco se repite en bucle._
 
 #### Canal `voice`
 
@@ -488,7 +481,7 @@ Está diseñado para **voces de los personajes**.
 
 Ren’Py puede reproducir y detener automáticamente las voces cuando los personajes hablan.
 
-```
+```python
 voice "sayori_001.ogg"
 
 s "¡Buenos días!"
@@ -500,13 +493,13 @@ Además, el volumen del canal de voz puede controlarse desde las preferencias de
 
 Lo más recomendable es guardar todo el audio dentro de la carpeta `game`:
 
-```
+```text
 game/audio/
 ```
 
 Una estructura organizada podría verse así:
 
-```
+```text
 game/
 └── audio/
     ├── music/
@@ -522,7 +515,7 @@ game/
 
 Luego puedes reproducir los archivos indicando su ruta:
 
-```
+```python
 play music "music/opening.ogg"
 play sound "sfx/door.ogg"
 ```
@@ -531,7 +524,7 @@ play sound "sfx/door.ogg"
 
 La instrucción más común es `play`.
 
-```
+```python
 play music "opening.ogg"
 ```
 
@@ -541,7 +534,7 @@ Si ya había otra canción reproduciéndose, será reemplazada.
 
 Puedes hacer que la música entre y salga suavemente.
 
-```
+```python
 play music "opening.ogg" fadein 2.0
 ```
 
@@ -549,19 +542,19 @@ La música tardará **2 segundos** en alcanzar el volumen normal.
 
 Para cambiar una canción suavemente:
 
-```
+```python
 play music "sad_theme.ogg" fadeout 1.0 fadein 2.0
 ```
 
 Esto desvanece la canción anterior durante 1 segundo y la nueva entra durante 2 segundos.
 
-**En resumen fadein es de ingreso y fadeout es de salida.**
+**En resumen: fadein es de ingreso y fadeout es de salida.**
 
 #### Reproducir una lista de canciones
 
 Puedes poner varias canciones en secuencia.
 
-```
+```python
 play music [
     "opening.ogg",
     "theme.ogg",
@@ -577,7 +570,7 @@ A veces entras varias veces a una misma pantalla y no quieres que la música vue
 
 Usa `if_changed`.
 
-```
+```python
 play music opening if_changed
 ```
 
@@ -587,7 +580,7 @@ Si `opening` ya está sonando, Ren’Py continuará reproduciéndola sin reinici
 
 Puedes cambiar el volumen de una reproducción específica.
 
-```
+```python
 play sound "door.ogg" volume 0.5
 ```
 
@@ -602,13 +595,13 @@ Esto es muy útil para sonidos lejanos o ambientales.
 
 Para detener un canal:
 
-```
+```python
 stop music
 ```
 
 Con fundido:
 
-```
+```python
 stop music fadeout 1.5
 ```
 
@@ -616,7 +609,7 @@ La música desaparecerá gradualmente durante 1.5 segundos.
 
 También funciona con otros canales.
 
-```
+```python
 stop sound
 stop voice
 ```
@@ -632,7 +625,7 @@ Para evitar problemas de organización, te recomiendo esta regla:
 
 Edita el audio en WAV si necesitas máxima calidad y luego exporta una versión `.ogg` para el juego.
 
-Un dato curioso: **Ogg es el contenedor y Vorbis es el códec de compresión**. Por eso, cuando hablamos de archivos `.ogg`, en realidad normalmente nos referimos a **Ogg Vorbis**, ¡El formato de audio que Ren’Py utiliza con mayor frecuencia en **videojuegos** y n**ovelas visuales**!.
+Un dato curioso: **Ogg es el contenedor y Vorbis es el códec de compresión**. Por eso, cuando hablamos de archivos `.ogg`, en realidad normalmente nos referimos a **Ogg Vorbis**, ¡el formato de audio que Ren’Py utiliza con mayor frecuencia en **videojuegos** y **novelas visuales**!
 
 ---
 ### Animaciones y transformaciones con ATL
@@ -655,14 +648,14 @@ La cláusula **`at`** se utiliza para aplicar una **transformación** a una imag
 
 La estructura básica es:
 
-```
+```python
 show + imagen + at + nombre_de_la_transformacion
 ```
 
 Por ejemplo:
 
-```
-show eileen happy at right(o cualquier transformación por defecto.)
+```python
+show eileen happy at right (o cualquier transformación por defecto).
 ```
 
 Aquí:
@@ -715,4 +708,4 @@ Aquí:
 *De igual manera, puedes crear tus propias animaciones, pero eso lo veremos más adelante ;D.*
 
 ---
-
+### Labels y flujo de control

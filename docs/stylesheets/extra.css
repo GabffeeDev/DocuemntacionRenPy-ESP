@@ -1,0 +1,23 @@
+:root {
+  --md-code-hl-keyword-color: #7c3aed;
+  --md-code-hl-string-color: #15803d;
+  --md-code-hl-name-color: #0369a1;
+  --md-code-hl-variable-color: #0369a1;
+  --md-code-hl-function-color: #c2410c;
+  --md-code-hl-number-color: #b45309;
+  --md-code-hl-comment-color: #64748b;
+  --md-code-hl-operator-color: #be123c;
+  --md-code-hl-punctuation-color: #475569;
+}
+
+[data-md-color-scheme="slate"] {
+  --md-code-hl-keyword-color: #c084fc;
+  --md-code-hl-string-color: #86efac;
+  --md-code-hl-name-color: #7dd3fc;
+  --md-code-hl-variable-color: #7dd3fc;
+  --md-code-hl-function-color: #fdba74;
+  --md-code-hl-number-color: #facc15;
+  --md-code-hl-comment-color: #94a3b8;
+  --md-code-hl-operator-color: #fb7185;
+  --md-code-hl-punctuation-color: #cbd5e1;
+}

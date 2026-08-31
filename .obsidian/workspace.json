@@ -20,6 +20,18 @@
               "icon": "lucide-file",
               "title": "Inicio rápido"
             }
+          },
+          {
+            "id": "dba360e8f5407e7a",
+            "type": "leaf",
+            "state": {
+              "type": "image",
+              "state": {
+                "file": "docs/images/carpeta-audio.png"
+              },
+              "icon": "lucide-image",
+              "title": "carpeta-audio"
+            }
           }
         ]
       }
@@ -187,22 +199,21 @@
   },
   "active": "9a1d78b8b6176782",
   "lastOpenFiles": [
-    "docs/Índice.md",
+    "docs/images/definicion-automatica.png",
     "docs/Inicio rápido.md",
-    "docs/images/ATL.png",
+    "i.md",
+    "docs/Índice.md",
+    "docs/images/carpeta-audio.png",
+    "docs/images/renpy-launcher.png",
+    "docs/images/carpeta-images.png",
+    "Pasted image 20260831070334.png",
+    "Pasted image 20260831070223.png",
     "docs/Herramientas para Desarrolladores.md",
+    "docs/images/ATL.png",
     "docs/index.md",
-    "docs/images/definicion-automatica.png",
-    "docs/images/definicion-automatica.png",
     "Pasted image 20260724055201.png",
     "().md",
-    "docs/images/carpeta-images.png",
-    "docs/images/estructura-proyecto.png",
-    "docs/images/renpy-launcher.png",
-    "docs/images/renpy-preferencias.png",
-    "docs/images/script-rpy.png",
     "README.md",
-    "images/Pasted image 20260723165844.png",
     "images",
     "site/search/search_index.json",
     "site/search",
