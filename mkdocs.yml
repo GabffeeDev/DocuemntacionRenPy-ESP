@@ -46,7 +46,5 @@ extra:
     property: G-PQZ2KT1TZ5
 
 nav:
-  - Bienvenida: index.md
-  - Índice: Índice.md
   - Inicio Rápido: Inicio rápido.md
   - Herramientas para Desarrolladores: Herramientas para Desarrolladores.md

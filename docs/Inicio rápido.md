@@ -1,4 +1,6 @@
 
+"*Pequeñas mejoras, realizadas de forma constante, producen grandes resultados.*" **Kaizen (改善)**.
+
 [Descarga Ren'Py](https://www.renpy.org/latest.html)
 ## Crear un proyecto en Ren'Py
 
@@ -9,7 +11,8 @@ Lo más importante es que la resolución del proyecto coincida con la de las im�
 ![Launcher de Ren'Py mostrando la creación de un proyecto](images/renpy-launcher.png)
 
 ---
-## Configurar las preferencias
+ 
+#### Configurar las preferencias
 
 En **Preferencias** puedes elegir la carpeta donde se guardarán todos tus proyectos.
 
@@ -22,7 +25,7 @@ Además, te recomiendo instalar **Visual Studio Code** y configurarlo como edito
 ![Preferencias de Ren'Py con opciones de carpeta de proyectos y editor](images/renpy-preferencias.png)
 
 ---
-## Conociendo la estructura del proyecto
+#### Conociendo la estructura del proyecto
 
 Una vez creado el proyecto (en este ejemplo llamado **NuevoProyecto**), observarás que en la sección **Editar archivo** aparecen varios archivos con la extensión `.rpy`. Estos contienen el código de tu novela visual.
 
@@ -31,7 +34,7 @@ Por ahora no nos centraremos en ellos. Lo importante es la sección **Abrir carp
 ![Estructura inicial del proyecto en el launcher de Ren'Py](images/estructura-proyecto.png)
 
 ---
-## Organizando los recursos
+#### Organizando los recursos
 
 Antes de comenzar a programar la historia, lo habitual es importar todos los recursos del proyecto. Desde el principio intenta mantener una estructura organizada.
 
@@ -100,6 +103,7 @@ label start:
     return
 ```
 
+---
 #### Un personaje
 
 Primero debes crear el personaje.
@@ -119,13 +123,6 @@ label start:
 
     return
 ```
-
-Resultado:
-
-**Yuri**
-
-> Hola.  
-> Me alegra verte.
 
 ---
 ### Definir personajes
@@ -188,7 +185,10 @@ En cambio, si ese doctor aparecerá varias veces a lo largo de la historia, ento
 ```python
 define d = Character("Doctor")
 ```
-#### Resumen
+
+---
+
+**Resumen**
 
 ```python
 define e = Character("Eileen")
@@ -222,7 +222,9 @@ Su sintaxis es la siguiente:
 image nombre_de_la_imagen = "ruta/del/archivo.png"
 ```
 
-#### Etiqueta y atributo
+---
+
+**Etiqueta y atributo**
 
 El nombre de una imagen en Ren'Py está formado por una **etiqueta** (*tag*) y uno o más **atributos** (*attributes*).
 
@@ -252,6 +254,7 @@ Aquí Ren'Py interpreta:
 
 Fíjate que **los espacios son importantes**. Cada palabra forma parte del nombre de la imagen y Ren'Py las interpreta como una etiqueta seguida de uno o más atributos.
 
+---
 #### Registro automático de imágenes
 
 Hay una característica de Ren'Py que muchos desarrolladores principiantes pasan por alto.
@@ -274,21 +277,46 @@ image yuri sad
 
 Esto reduce la cantidad de código que debes escribir y hace que tu proyecto sea mucho más fácil de mantener.
 
-**Mi recomendación**:
+>**Mi recomendación**: 
+>
+>Utiliza nombres **descriptivos y consistentes** para tus imágenes, audios y variables. Puede parecer un detalle sin importancia cuando el proyecto es pequeño, pero conforme crezca agradecerás poder identificar cada recurso con solo leer su nombre.
+>
+>Como puedes ver, mi *sprite* está guardado dentro de `game/images/yuri/yuri sad/`. No he definido la imagen con la sentencia `image`, porque Ren'Py la registrará automáticamente.
+>
+>Para que esto funcione correctamente, el nombre del archivo debe seguir el formato **etiqueta atributo**, separados por un espacio. En este ejemplo, `Eileen` es la **etiqueta** (*tag*) y `neutral` es el **atributo** (*attribute*).
 
-Utiliza nombres **descriptivos y consistentes** para tus imágenes, audios y variables. Puede parecer un detalle sin importancia cuando el proyecto es pequeño, pero conforme crezca agradecerás poder identificar cada recurso con solo leer su nombre.
-
-Como puedes ver, mi *sprite* está guardado dentro de `game/images/yuri/yuri sad/`. No he definido la imagen con la sentencia `image`, porque Ren'Py la registrará automáticamente.
-
-Para que esto funcione correctamente, el nombre del archivo debe seguir el formato **etiqueta atributo**, separados por un espacio. En este ejemplo, `Eileen` es la **etiqueta** (*tag*) y `neutral` es el **atributo** (*attribute*).
 
 ```python
 image yuri sad -> Atributo
-  |    |__ Atributo
+  |    |
+  | Atributo
+  |    
 Etiqueta
 ```
 
-#### Importante
+---
+
+**¿Por qué usar etiquetas y atributos?**
+
+La principal ventaja es que Ren'Py puede cambiar automáticamente la imagen de un personaje sin que tengas que ocultarla primero.
+
+Por ejemplo:
+
+```python
+show yuri happy
+```
+
+Más adelante basta con escribir:
+
+```python
+show yuri sad
+```
+
+Como ambas imágenes comparten la etiqueta `yuri`, Ren'Py reemplazará automáticamente la expresión anterior por la nueva.
+
+Gracias a este sistema, normalmente **no es necesario utilizar `hide` para cambiar la expresión, la pose o la ropa de un personaje.**
+
+**Importante**
 
 Ren'Py **no distingue entre mayúsculas y minúsculas** al registrar imágenes. Internamente convierte el nombre a minúsculas.
 
@@ -310,26 +338,7 @@ show yuri happy
 
 Aun así, te recomiendo escribir siempre las etiquetas y los atributos en minúsculas para mantener un código consistente y fácil de leer.
 
-#### ¿Por qué usar etiquetas y atributos?
-
-La principal ventaja es que Ren'Py puede cambiar automáticamente la imagen de un personaje sin que tengas que ocultarla primero.
-
-Por ejemplo:
-
-```python
-show yuri happy
-```
-
-Más adelante basta con escribir:
-
-```python
-show yuri sad
-```
-
-Como ambas imágenes comparten la etiqueta `yuri`, Ren'Py reemplazará automáticamente la expresión anterior por la nueva.
-
-Gracias a este sistema, normalmente **no es necesario utilizar `hide` para cambiar la expresión, la pose o la ropa de un personaje.**
-
+---
 #### Sentencias `show` y `hide`
 
 Una vez registrada una imagen, puedes mostrarla con la sentencia `show`.
@@ -350,7 +359,8 @@ Generalmente `hide` se utiliza cuando realmente quieres que un personaje desapar
 - Antes de mostrar un CG.
 - Al cambiar de escenario.
 - Cuando un elemento ya no debe permanecer visible.
-#### ¿Y si no quiero usar la sentencia `image`?
+
+**¿Y si no quiero usar la sentencia `image`?**
 
 También es completamente válido mostrar un archivo indicando su ruta directamente.
 
@@ -382,11 +392,11 @@ Ren’Py soporta los siguientes formatos:
 
 Aunque todos funcionan, **mi recomendación es usar `.ogg`**, especialmente para proyectos de Ren’Py y videojuegos.
 
-#### ¿Por qué usar `.ogg`?
+**¿Por qué usar `.ogg`?**
 
 Ogg Vorbis ofrece un excelente equilibrio entre **calidad de audio, tamaño del archivo y compatibilidad**.
 
-##### Ventajas
+**Ventajas**
 
 - **Archivos más pequeños** que WAV.
 - **Muy buena calidad de sonido**.
@@ -403,7 +413,8 @@ Por ejemplo, una canción de fondo de 3 minutos puede ocupar:
 
 Para una novela visual con muchas canciones y efectos, la diferencia puede ser grande, pero puedes usar `.mp3` si así lo deseas; recuerda que esto es únicamente una recomendación.
 
-#### Nombres en automático (Variables)
+---
+#### Registro automático de audio
 
 De igual manera que con las imágenes, si tú tienes:
 
@@ -423,6 +434,7 @@ Ren’Py convierte el nombre del archivo a minúsculas y lo registra automática
 
 *Recuerda que esto solo sirve si el archivo de audio está en la carpeta `game`.*
 
+---
 #### Definiendo audio
 
 Si por alguna razón no deseas usar el registro de nombres automático con Ren'Py, puedes definir el audio tal que así:
@@ -436,11 +448,16 @@ play sound ladrido
 
 ```
 
-**Esto sirve para todos los canales de audio.** ->
-#### Los canales de audio
+> **Recordatorio:**
+> 
+> Esto sirve para todos los canales de audio. 
+
+---
+#### Canales de audio
 
 Ren’Py organiza el sonido mediante **canales**. Cada canal tiene un propósito específico.
 
+---
 #### Canal `music`
 
 Se utiliza para la **música de fondo (BGM)**.
@@ -451,6 +468,7 @@ Normalmente reproduce una sola canción y esta se repite automáticamente en buc
 play music "opening.ogg"
 ```
 
+---
 #### Canal `sound`
 
 Está pensado para **efectos de sonido (SFX)**.
@@ -461,6 +479,7 @@ Cuando reproduces un nuevo sonido en este canal, reemplaza al anterior y, una ve
 play sound "door_close.ogg"
 ```
 
+---
 #### Canal `audio`
 
 Este canal permite reproducir **varios sonidos al mismo tiempo**.
@@ -473,8 +492,14 @@ play audio "wind.ogg"
 play audio "traffic.ogg"
 ```
 
-Los tres sonidos se reproducirán de forma simultánea. _Aclaración: no admite poner en cola el sonido ni detener la reproducción y, por supuesto, tampoco se repite en bucle._
+Los tres sonidos se reproducirán de forma simultánea. 
 
+> **Aclaración:** 
+> 
+> no admite poner en cola el sonido ni detener la reproducción con la sentencia stop y, por supuesto, tampoco se repite en bucle.
+
+
+---
 #### Canal `voice`
 
 Está diseñado para **voces de los personajes**.
@@ -489,9 +514,11 @@ s "¡Buenos días!"
 
 Además, el volumen del canal de voz puede controlarse desde las preferencias del juego.
 
-#### Dónde colocar los archivos
+---
 
-Lo más recomendable es guardar todo el audio dentro de la carpeta `game`:
+**¿Dónde colocar los archivos?**
+
+Lo más recomendable es guardar todo el audio dentro de la carpeta `game` sobre todo si deseas que se use el registro automático de audio:
 
 ```text
 game/audio/
@@ -520,6 +547,7 @@ play music "music/opening.ogg"
 play sound "sfx/door.ogg"
 ```
 
+---
 #### Sentencia `play`
 
 La instrucción más común es `play`.
@@ -530,7 +558,12 @@ play music "opening.ogg"
 
 Si ya había otra canción reproduciéndose, será reemplazada.
 
-#### Fundidos (fade)
+---
+#### Juega con el audio
+
+---
+
+**Fundidos (fade)**
 
 Puedes hacer que la música entre y salga suavemente.
 
@@ -550,7 +583,9 @@ Esto desvanece la canción anterior durante 1 segundo y la nueva entra durante 2
 
 **En resumen: fadein es de ingreso y fadeout es de salida.**
 
-#### Reproducir una lista de canciones
+---
+
+**Reproducir una lista de canciones**
 
 Puedes poner varias canciones en secuencia.
 
@@ -564,7 +599,9 @@ play music [
 
 Cuando termine una, comenzará la siguiente.
 
-#### Evitar reiniciar una canción
+---
+
+**Evitar reiniciar una canción**
 
 A veces entras varias veces a una misma pantalla y no quieres que la música vuelva a empezar.
 
@@ -576,7 +613,9 @@ play music opening if_changed
 
 Si `opening` ya está sonando, Ren’Py continuará reproduciéndola sin reiniciarla.
 
-#### Ajustar el volumen de un sonido
+---
+
+**Ajustar el volumen de un sonido**
 
 Puedes cambiar el volumen de una reproducción específica.
 
@@ -607,11 +646,13 @@ stop music fadeout 1.5
 
 La música desaparecerá gradualmente durante 1.5 segundos.
 
-También funciona con otros canales.
+También funciona con otros canales. *Excepto para el canal audio.*
 
 ```python
 stop sound
+stop music
 stop voice
+X stop audio X -> # No lo permite
 ```
 
 #### Una configuración recomendada para principiantes
@@ -625,7 +666,9 @@ Para evitar problemas de organización, te recomiendo esta regla:
 
 Edita el audio en WAV si necesitas máxima calidad y luego exporta una versión `.ogg` para el juego.
 
-Un dato curioso: **Ogg es el contenedor y Vorbis es el códec de compresión**. Por eso, cuando hablamos de archivos `.ogg`, en realidad normalmente nos referimos a **Ogg Vorbis**, ¡el formato de audio que Ren’Py utiliza con mayor frecuencia en **videojuegos** y **novelas visuales**!
+> **Un dato curioso:**
+> 
+> Ogg es el contenedor y Vorbis es el códec de compresión. Por eso, cuando hablamos de archivos `.ogg`, en realidad normalmente nos referimos a **Ogg Vorbis**, ¡el formato de audio que Ren’Py utiliza con mayor frecuencia en **videojuegos** y **novelas visuales**!
 
 ---
 ### Animaciones y transformaciones con ATL
@@ -642,6 +685,7 @@ Por ahora, solo hablaré de las animaciones que el motor tiene por defecto, así
 
 **Dato curioso:** `center` y `default` hacen esencialmente lo mismo: colocan el elemento en el centro horizontal de la pantalla. `reset`, por su parte, devuelve las propiedades de transformación a sus valores predeterminados.
 
+---
 #### Cláusula AT
 
 La cláusula **`at`** se utiliza para aplicar una **transformación** a una imagen cuando la muestras en pantalla.
@@ -666,6 +710,8 @@ Aquí:
 - `right` → es la transformación que queremos aplicar.
 
 *Puedes crear tus propias posiciones de imagen, pero eso es más avanzado, más adelante lo veremos.*
+
+---
 #### Posiciones por defecto
 
 | Posición                 | Descripción                                                                                                                             |
@@ -681,31 +727,608 @@ Aquí:
 | **`topright`**           | Alinea el elemento con la esquina superior derecha de la pantalla.                                                                      |
 | **`truecenter`**         | Centra el elemento tanto horizontal como verticalmente.                                                                                 |
 
+> **Aclaración:**
+> 
+> Puedes crear tus propias transformaciones, por ende, tener más control sobre elementos en la pantalla. Eso es más avanzado y lo veremos más adelante.
+
+---
 #### Transiciones por defecto
 
-|Transición|Descripción|
-|---|---|
-|**`dissolve`**|Cambia suavemente de una escena a otra mediante un efecto de disolución. Dura **0,5 segundos**.|
-|**`fade`**|Hace que la pantalla se desvanezca a negro y luego muestre gradualmente la nueva escena.|
-|**`pixellate`**|Cambia de una escena a otra mediante un efecto de pixelado.|
-|**`move`**|Mueve suavemente las imágenes desde su posición actual hasta una nueva posición.|
-|**`moveinright`**|Hace que una imagen entre en la pantalla desde la derecha. También existen `moveinleft`, `moveintop` y `moveinbottom`.|
-|**`moveoutright`**|Hace que una imagen salga de la pantalla hacia la derecha. También existen `moveoutleft`, `moveouttop` y `moveoutbottom`.|
-|**`ease`**|Funciona de manera similar a `move`, pero el movimiento comienza y termina de forma más suave. También existen variantes para cada dirección.|
-|**`zoomin`**|Hace que una imagen aparezca mediante un efecto de acercamiento o **zoom**.|
-|**`zoomout`**|Hace que una imagen desaparezca mediante un efecto de alejamiento.|
-|**`zoominout`**|Combina ambos efectos: acerca la imagen que entra y aleja la imagen que sale.|
-|**`vpunch`**|Sacude rápidamente la pantalla de forma **vertical**.|
-|**`hpunch`**|Sacude rápidamente la pantalla de forma **horizontal**.|
-|**`blinds`**|Cambia de escena mediante un efecto similar al de unas **persianas verticales**.|
-|**`squares`**|Cambia de escena utilizando un efecto formado por **cuadrados**.|
-|**`wipeleft`**|Revela la nueva escena mediante un efecto de barrido hacia la izquierda. También existen `wiperight`, `wipeup` y `wipedown`.|
-|**`slideleft`**|Desliza la nueva escena hacia la pantalla desde la izquierda. También existen `slideright`, `slideup` y `slidedown`.|
-|**`slideawayleft`**|Desliza la escena actual fuera de la pantalla hacia la izquierda. También existen `slideawayright`, `slideawayup` y `slideawaydown`.|
-|**`pushright`**|La nueva escena entra desde la derecha, empujando a la escena anterior fuera de la pantalla. También existen `pushleft`, `pushup` y `pushdown`.|
-|**`irisin`**|Muestra la nueva escena mediante una abertura rectangular que se expande. También existe `irisout`, que realiza el efecto contrario.|
+| Transición          | Descripción                                                                                                                                     |
+| ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`dissolve`**      | Cambia suavemente de una escena a otra mediante un efecto de disolución. Dura **0,5 segundos**.                                                 |
+| **`fade`**          | Hace que la pantalla se desvanezca a negro y luego muestre gradualmente la nueva escena.                                                        |
+| **`pixellate`**     | Cambia de una escena a otra mediante un efecto de pixelado.                                                                                     |
+| **`move`**          | Mueve suavemente las imágenes desde su posición actual hasta una nueva posición.                                                                |
+| **`moveinright`**   | Hace que una imagen entre en la pantalla desde la derecha. También existen `moveinleft`, `moveintop` y `moveinbottom`.                          |
+| **`moveoutright`**  | Hace que una imagen salga de la pantalla hacia la derecha. También existen `moveoutleft`, `moveouttop` y `moveoutbottom`.                       |
+| **`ease`**          | Funciona de manera similar a `move`, pero el movimiento comienza y termina de forma más suave. También existen variantes para cada dirección.   |
+| **`zoomin`**        | Hace que una imagen aparezca mediante un efecto de acercamiento o **zoom**.                                                                     |
+| **`zoomout`**       | Hace que una imagen desaparezca mediante un efecto de alejamiento.                                                                              |
+| **`zoominout`**     | Combina ambos efectos: acerca la imagen que entra y aleja la imagen que sale.                                                                   |
+| **`vpunch`**        | Sacude rápidamente la pantalla de forma **vertical**.                                                                                           |
+| **`hpunch`**        | Sacude rápidamente la pantalla de forma **horizontal**.                                                                                         |
+| **`blinds`**        | Cambia de escena mediante un efecto similar al de unas **persianas verticales**.                                                                |
+| **`squares`**       | Cambia de escena utilizando un efecto formado por **cuadrados**.                                                                                |
+| **`wipeleft`**      | Revela la nueva escena mediante un efecto de barrido hacia la izquierda. También existen `wiperight`, `wipeup` y `wipedown`.                    |
+| **`slideleft`**     | Desliza la nueva escena hacia la pantalla desde la izquierda. También existen `slideright`, `slideup` y `slidedown`.                            |
+| **`slideawayleft`** | Desliza la escena actual fuera de la pantalla hacia la izquierda. También existen `slideawayright`, `slideawayup` y `slideawaydown`.            |
+| **`pushright`**     | La nueva escena entra desde la derecha, empujando a la escena anterior fuera de la pantalla. También existen `pushleft`, `pushup` y `pushdown`. |
+| **`irisin`**        | Muestra la nueva escena mediante una abertura rectangular que se expande. También existe `irisout`, que realiza el efecto contrario.            |
 
-*De igual manera, puedes crear tus propias animaciones, pero eso lo veremos más adelante ;D.*
+> **Aclaración:**
+> 
+> Tambien puedes crear tus propias animaciones. Pero eso lo veremos cuando sea necesario :D.
+
 
 ---
 ### Labels y flujo de control
+
+#### label `start`
+
+Los labels (marcas en español) permiten identificar puntos específicos de una novela visual, facilitando el control del flujo, la organización de las escenas y la creación de diferentes rutas narrativas.
+
+![labels](images/labels.png)
+
+En `script.rpy` encontrarás por defecto el label `start`. Ren'Py utiliza este label como punto de inicio del juego, por lo que la ejecución comienza allí al iniciar la novela visual.
+
+`start` es el label que Ren'Py utiliza **por defecto como punto de inicio**, pero no es que sea técnicamente imposible cambiarlo. Ren'Py permite configurar otro punto de inicio mediante `config.start`.
+
+*Pero eso es un poquito más avanzado y realmente no es necesario para empezar.*
+
+> **Advertencia:** La indentación es muy importante en Ren'Py. Los elementos que pertenecen a un `label` deben estar correctamente indentados. Una indentación incorrecta puede provocar errores.
+
+---
+
+**¿Qué es la indentación?**
+
+La **indentación** es el espacio que se coloca al comienzo de una línea de código para indicar que esa línea pertenece a un bloque de código.
+
+En Ren'Py, puedes imaginarla como una forma de **organizar el código por niveles**:
+
+```python
+label start:
+    "Esta línea pertenece al label."
+"Esta no." # -> Y además te dara error.
+```
+
+ **Una forma fácil de recordarlo:** la indentación funciona como una sangría en un documento. Cuanto más hacia la derecha está una línea, más profundamente pertenece al bloque anterior.
+
+> **Advertencia:** Si quieres que el nombre de un `label` tenga varias palabras, debes separarlas utilizando un guion bajo `_`. **No utilices espacios.**
+
+Por ejemplo, si quieres crear un label llamado **inicio de la historia**, no puedes escribirlo así:
+
+```python
+label inicio de la historia: # -> Te dará error.
+```
+
+En su lugar, debes utilizar `_` para unir las palabras:
+
+```python
+label inicio_de_la_historia: # Usamos "_" para alargar el nombre, esta es la forma correcta, aunque también puedes hacerlo asi:
+
+label inicioDeLaHistoria: # A mí no me gusta, pero es otra forma de ahcerlo.
+
+```
+
+El guion bajo `_` permite que Ren'Py entienda todo el nombre como **un solo identificador**.
+
+Puedes utilizarlo tantas veces como necesites:
+
+```python
+label escena_yuri:
+```
+
+```python
+label primera_escena_yuri:
+```
+
+```python
+label final_bueno_yuri:
+```
+
+**Recuerda:** cuando quieras separar palabras dentro del nombre de un `label`, utiliza `_` en lugar de espacios.
+
+---
+#### Sentencia `jump`
+
+La sentencia `jump` permite **mover el flujo de la novela visual desde el punto actual hasta otro `label`**.
+
+Puedes imaginarlo como un **salto directo**: Ren'Py deja de ejecutar lo que viene después y continúa desde el `label` que hayas indicado.
+
+La forma básica es:
+
+```python
+jump nombre_del_label
+```
+
+Por ejemplo:
+
+```python
+label inicio:
+    "La historia comienza."
+    jump escena_yuri
+
+label escena_yuri:
+    "Yuri entra en la habitación."
+```
+
+Cuando Ren'Py llega a:
+
+```python
+jump escena_yuri
+```
+
+salta directamente hasta:
+
+```python
+label escena_yuri:
+```
+
+Por lo tanto, **no continuará con las líneas que estuvieran después del `jump` dentro de `inicio`**.
+
+---
+
+**Las rutas de una novela visual**
+
+`jump` es especialmente útil para crear diferentes caminos en una novela visual.
+
+Por ejemplo:
+
+```python
+label inicio:
+    "¿Qué quieres hacer?"
+
+    menu:
+        "Hablar con Yuri":
+            jump ruta_yuri
+
+        "Ir a casa":
+            jump ruta_casa
+
+
+label ruta_yuri:
+    "Decidiste hablar con Yuri."
+    "Ella sonríe."
+
+label ruta_casa:
+    "Decidiste regresar a casa."
+```
+
+El jugador puede tomar una decisión y `jump` llevará la historia al `label` correspondiente.
+
+La estructura sería:
+
+```
+                 inicio
+                /      \
+               /        \
+          ruta_yuri   ruta_casa
+```
+
+Esto permite organizar fácilmente **rutas, escenas, finales y diferentes partes de la historia**.
+
+---
+
+ **`jump` no regresa al punto anterior**
+
+Una característica importante de `jump` es que **no guarda el lugar desde donde realizaste el salto para volver después**.
+
+Por ejemplo:
+
+```python
+label inicio:
+    "Antes del salto."
+
+    jump otra_escena
+
+    "Esta línea no se ejecutará."
+```
+
+Después del `jump`, Ren'Py continúa desde `otra_escena`.
+
+Si necesitas ir a otra parte de la historia **y después regresar al lugar donde hiciste el salto**, existe otra instrucción llamada `call`, que veremos más adelante.
+
+Puedes pensar en la diferencia así:
+
+- `jump` → **"Ve allí y continúa desde allí."**
+- `call` → **"Ve allí, haz lo que tengas que hacer y después regresa."**
+
+*Ya hablaremos de `call`.*
+
+---
+
+**En resumen:** 
+
+**`jump` permite cambiar directamente el punto de ejecución de la novela visual. Al utilizarlo, Ren'Py continúa la historia desde el `label` indicado y no regresa automáticamente al lugar desde donde se realizó el salto.**
+
+**Dato curioso:** `jump` puede utilizarse para crear un bucle. Si un label hace `jump` hacia sí mismo, Ren'Py volverá a ejecutar ese mismo bloque una y otra vez:
+
+```
+label bucle:
+    "¡Estamos atrapados!"
+
+    jump bucle
+```
+
+---
+
+#### Labels globales y locales
+
+Ren'Py tiene dos tipos de labels: **globales y locales**.
+
+> **Recordatorio:**`jump` también puede utilizar labels locales
+#### Label global
+
+Un label global puede utilizarse desde cualquier parte del proyecto y debe tener un nombre único.
+
+```python
+label historia_yuri:
+    "La historia comienza."
+```
+
+---
+#### Label local
+
+Un label local pertenece a un label global. Se escribe colocando un `.` antes de su nombre:
+
+```python
+label historia_yuri:
+    "Comienza la historia."
+    jump .escena_1
+
+label .escena_1:
+    "Yuri entra en la habitación."
+    jump .escena_2
+
+label .escena_2:
+    "Yuri se sienta."
+```
+
+En este ejemplo, `.escena_1` y `.escena_2` pertenecen a `historia_yuri`.
+
+Los labels locales son útiles para **organizar mejor las diferentes partes de una historia**. Además, distintos labels globales pueden tener labels locales con el mismo nombre:
+
+```python
+label historia_yuri:
+	jump .escena
+	
+label .escena:
+    "Escena de Yuri."
+
+label historia_sayori:
+    jump .escena
+        
+label .escena:
+	"Escena de Sayori."
+```
+
+No hay conflicto porque cada `.escena` pertenece a un label global diferente.
+
+> **En resumen:** los labels globales sirven como puntos principales de la historia, mientras que los labels locales permiten organizar partes más pequeñas dentro de ellos.
+
+---
+#### Sentencia `call`  
+
+La sentencia `call` permite **ir temporalmente a otro `label` y regresar automáticamente al punto donde se hizo el `call`**.
+
+Puedes imaginarlo como hacer una visita:
+
+> **`call` = "Ve allí, ejecuta lo que hay y después vuelve aquí."**
+
+Su forma básica es:
+
+```python
+call nombre_del_label
+```
+
+Por ejemplo:
+
+```python
+label inicio:
+    "Comienza la historia."
+
+    call escena_yuri
+
+    "La escena de Yuri terminó."
+
+label escena_yuri:
+    "Yuri entra en la habitación."
+
+    return # -> Ya hablaremos de return (Es muy fácil.)
+```
+
+
+Ren'Py ejecuta:
+
+```
+call escena_yuri
+```
+
+Entonces:
+
+1. Va a `escena_yuri`.
+2. Ejecuta sus instrucciones.
+3. Llega a `return`.
+4. **Regresa a la línea que estaba después de `call`.**
+5. Continúa con `"La escena de Yuri terminó."`
+
+La clave está en `return`:
+
+```python
+return
+```
+
+`return` significa **"terminé lo que vine a hacer, vuelve al lugar desde donde me llamaron"**.
+
+---
+#### Diferencia entre `jump` y `call`
+
+Esta es una diferencia fundamental:
+
+---
+
+ **`jump`**
+
+---
+
+```
+jump escena_yuri
+```
+
+**Salta y continúa allí. No regresa.**
+
+```
+Inicio
+  ↓
+jump
+  ↓
+Escena Yuri
+  ↓
+Continúa desde aquí
+```
+
+---
+
+**`call`**
+
+---
+
+```
+call escena_yuri
+```
+
+**Va allí y después regresa.**
+
+```
+Inicio
+  ↓
+call
+  ↓
+Escena Yuri
+  ↓
+return
+  ↓
+Inicio
+  ↓
+Continúa después del call
+```
+
+**Va allí y después regresa.**
+
+---
+
+> **Ejemplo:**
+
+![call](images/call.png)
+
+Una forma fácil de recordarlo:
+
+> **`jump` = "Ve allí."**  
+> **`call` = "Ve allí y vuelve."**
+
+---
+
+**¿Para qué puede ser útil?**
+
+`call` es especialmente útil cuando tienes una escena o evento que quieres ejecutar **desde diferentes lugares**.
+
+Por ejemplo, puedes crear una pequeña escena de despedida:
+
+```
+label despedida:
+    "Yuri se despide de mí."
+    "Nos vemos mañana."
+
+    return
+```
+
+Y utilizarla desde diferentes partes:
+
+```python
+label lunes:
+    "Es lunes."
+
+    call despedida
+    
+label despedida:
+	"Después de despedirme, regreso a casa."
+
+label martes:
+    "Es martes."
+
+    call despedida
+```
+
+La misma escena puede ser reutilizada sin tener que escribirla nuevamente.
+
+---
+
+**`call` y `return` trabajan juntos**
+
+Cuando estás empezando, piensa en estas dos instrucciones como una pareja:
+
+```
+call escena
+```
+
+> "Ve a `escena`."
+
+Y:
+
+```
+return
+```
+
+> "Ya terminé. Regresa."
+
+Por ejemplo:
+
+```python
+label inicio:
+    "Estoy en casa."
+
+    call visitar_yuri
+
+    "Ahora estoy de vuelta en casa."
+
+
+label visitar_yuri:
+    "Voy a visitar a Yuri."
+    "Hablamos durante un rato."
+
+    return
+```
+
+El resultado sería:
+
+```
+Estoy en casa.
+      ↓
+Voy a visitar a Yuri.
+Hablamos durante un rato.
+      ↓
+Ahora estoy de vuelta en casa.
+```
+
+> **Resumen:**
+> 
+> **`call` permite trasladar temporalmente el flujo de la historia a otro `label`. Cuando ese label ejecuta `return`, Ren'Py regresa al punto donde se realizó el `call` y continúa desde allí.**
+> 
+> **`jump` y `call` no son lo mismo: `jump` cambia permanentemente el punto de ejecución, mientras que `call` permite ir a otro lugar y regresar.**
+
+---
+####  Sentencia `return`
+
+La instrucción `return` se utiliza principalmente para **volver al punto donde se realizó un `call`**.
+
+Por ejemplo:
+
+```
+label inicio:
+    "Voy a visitar a Yuri."
+
+    call escena_yuri
+
+    "Ya regresé."
+
+
+label escena_yuri:
+    "Estoy hablando con Yuri."
+
+    return
+```
+
+El flujo sería:
+
+```
+inicio
+   ↓
+call escena_yuri
+   ↓
+escena_yuri
+   ↓
+return
+   ↓
+Regresa después del call
+```
+
+Cuando Ren'Py encuentra `return`, recuerda dónde se hizo el `call` y continúa la historia desde la siguiente línea.
+
+---
+
+**¿Qué ocurre si `return` no tiene un `call` al que regresar?**
+
+Esta es la parte importante:
+
+> **Si Ren'Py ejecuta `return` y no existe ningún `call` pendiente, Ren'Py reinicia el juego y regresa al menú principal.**
+
+Por ejemplo:
+
+```
+label inicio:
+    "La historia ha terminado."
+
+    return
+```
+
+Como `inicio` no fue llamado mediante un `call`, no hay ningún lugar al que regresar.
+
+Por lo tanto, Ren'Py vuelve al **menú principal**.
+
+Puedes imaginarlo así:
+
+```
+¿Existe un call pendiente?
+        │
+       ┌┴┐
+      Sí No
+      │   │
+      ↓   ↓
+ Regresa  Vuelve al
+ después   menú principal
+ del call
+```
+
+---
+
+ **Una forma sencilla de entenderlo**
+
+Piensa que `call` y `return` funcionan como una pregunta y una respuesta:
+
+```
+call escena_yuri
+```
+
+Ren'Py dice:
+
+> **"Voy a esta escena, pero recuerdo dónde estaba para poder regresar."**
+
+Después:
+
+```
+return
+```
+
+Ren'Py dice:
+
+> **"Terminé aquí. Regreso al lugar que había guardado."**
+
+Pero si no hay ningún lugar guardado:
+
+```
+return
+```
+
+Ren'Py no tiene a dónde regresar dentro de la historia, así que **reinicia Ren'Py y vuelve al menú principal**.
+
+---
+
+ **En resumen:**
+ 
+ **`return` finaliza un `call` y devuelve el control al punto donde fue realizado. Si no existe ningún `call` pendiente, Ren'Py reinicia el juego y regresa al menú principal.**
+
+>**Dato curioso:**
+>
+ `return` también puede devolver un valor, que Ren'Py guarda en una variable especial llamada `_return`. Esto es útil para que un `label` pueda realizar una acción y enviar un resultado de vuelta al lugar que lo llamó.
+
