@@ -281,15 +281,15 @@ Esto reduce la cantidad de código que debes escribir y hace que tu proyecto sea
 >
 >Como puedes ver, mi *sprite* está guardado dentro de `game/images/yuri/yuri sad/`. No he definido la imagen con la sentencia `image`, porque Ren'Py la registrará automáticamente.
 >
->Para que esto funcione correctamente, el nombre del archivo debe seguir el formato **etiqueta atributo**, separados por un espacio. En este ejemplo, `Eileen` es la **etiqueta** (*tag*) y `neutral` es el **atributo** (*attribute*).
+>Para que esto funcione correctamente, el nombre del archivo debe seguir el formato **etiqueta atributo**, separados por un espacio. En este ejemplo, `yuri` es la **etiqueta** (*tag*) y `sad` es el **atributo** (*attribute*).
 
 
 ```python
-image yuri sad -> Atributo
-  |    |
-  | Atributo
-  |    
-Etiqueta
+ image yuri sad 
+		|   |
+        |   Atributo
+		|    
+	Etiqueta
 ```
 
 ---
