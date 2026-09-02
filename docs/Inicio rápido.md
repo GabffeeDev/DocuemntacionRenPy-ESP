@@ -1,6 +1,4 @@
 
-"*Pequeñas mejoras, realizadas de forma constante, producen grandes resultados.*" **Kaizen (改善)**.
-
 [Descarga Ren'Py](https://www.renpy.org/latest.html)
 ## Crear un proyecto en Ren'Py
 
