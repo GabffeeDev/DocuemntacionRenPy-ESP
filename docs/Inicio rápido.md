@@ -797,7 +797,7 @@ label start:
 Por ejemplo, si quieres crear un label llamado **inicio de la historia**, no puedes escribirlo así:
 
 ```python
-label inicio de la historia: # -> Te dará error.
+																		label inicio de la historia: # -> Te dará error.
 ```
 
 En su lugar, debes utilizar `_` para unir las palabras:
@@ -877,7 +877,7 @@ Por ejemplo:
 label inicio:
     "¿Qué quieres hacer?"
 
-    menu:
+    menu: # Ya hablaremos de menu
         "Hablar con Yuri":
             jump ruta_yuri
 
@@ -905,6 +905,169 @@ La estructura sería:
 ```
 
 Esto permite organizar fácilmente **rutas, escenas, finales y diferentes partes de la historia**.
+
+---
+
+#### Sentencia `menu`
+
+La sentencia `menu` permite **mostrar diferentes opciones al jugador para que pueda tomar una decisión**.
+
+En una novela visual, los `menu` son una de las principales formas en las que el jugador puede **influir en el desarrollo de la historia**.
+
+Por ejemplo:
+
+```python
+menu:
+    "Hablar con Yuri": # Agrega dos puntos para señalar que es una opción.
+        "Decidiste hablar con Yuri."
+
+    "Ir a casa":
+        "Decidiste regresar a casa."
+```
+
+El jugador verá dos opciones:
+
+```
+¿Qué quieres hacer?
+
+→ Hablar con Yuri
+→ Ir a casa
+```
+
+Dependiendo de la opción que elija, Ren'Py ejecutará las instrucciones correspondientes.
+
+> **Ejemplo:**
+
+![menu](images/menu.png)
+
+
+---
+
+#### La estructura de un `menu`
+
+Un `menu` funciona mediante **bloques indentados**.
+
+*No te olvides de la indentación.*
+
+```python
+menu:
+    "Primera opción":
+        "Esto ocurre si eliges la primera opción."
+
+    "Segunda opción":
+        "Esto ocurre si eliges la segunda opción."
+```
+
+Podemos dividirlo así:
+
+```python 
+menu:
+    ↓
+    Opciones disponibles
+        ↓
+        Lo que ocurre al elegir cada opción
+```
+
+La indentación vuelve a ser muy importante.
+
+> **Advertencia:** Cada opción del `menu` debe estar correctamente indentada. Además, las instrucciones que pertenecen a esa opción deben tener un nivel adicional de indentación.
+
+---
+
+#### Usando `menu` con `jump`
+
+Aquí es donde `menu` y `jump` comienzan a trabajar juntos.
+
+Imagina que quieres que el jugador elija entre dos rutas:
+
+```python
+label inicio:
+    "¿Qué quieres hacer?"
+
+    menu:
+        "Hablar con Yuri":
+            jump ruta_yuri
+
+        "Ir a casa":
+            jump ruta_casa
+```
+
+Si el jugador selecciona:
+
+```
+Hablar con Yuri
+```
+
+Ren'Py ejecutará:
+
+```python
+jump ruta_yuri
+```
+
+Y continuará en:
+
+```python
+label ruta_yuri:
+    "Decidiste hablar con Yuri."
+```
+
+Mientras que si el jugador selecciona:
+
+```
+Ir a casa
+```
+
+Ren'Py ejecutará:
+
+```
+jump ruta_casa
+```
+
+Y continuará en:
+
+```python
+label ruta_casa:
+    "Decidiste regresar a casa."
+```
+
+El flujo sería:
+
+```
+                Inicio
+                   ↓
+                 menu
+                /    \
+               ↓      ↓
+        Hablar con   Ir a casa
+           Yuri
+             ↓          ↓
+        jump ruta_yuri  jump ruta_casa
+             ↓          ↓
+         Ruta Yuri    Ruta Casa
+```
+
+> **En resumen:** `menu` permite que el jugador tome una decisión, mientras que `jump` puede utilizarse para llevar esa decisión hacia diferentes partes de la historia.
+
+---
+
+ **Un detalle importante**
+
+No siempre necesitas usar `jump` dentro de un `menu`.
+
+También puedes hacer algo simple:
+
+```
+menu:
+    "Comer pizza":
+        "Decidiste comer pizza."
+
+    "Comer hamburguesa":
+        "Decidiste comer una hamburguesa."
+
+"Después de comer, continué con mi día."
+```
+
+Cuando termina la opción elegida, Ren'Py puede continuar con el código que está después del `menu`. La documentación oficial describe precisamente que, si una opción termina sin transferir el control a otro lugar, la ejecución continúa después del bloque del menú
 
 ---
 
