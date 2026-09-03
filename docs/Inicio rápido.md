@@ -797,7 +797,7 @@ label start:
 Por ejemplo, si quieres crear un label llamado **inicio de la historia**, no puedes escribirlo así:
 
 ```python
-																		label inicio de la historia: # -> Te dará error.
+label inicio de la historia: # -> Te dará error.
 ```
 
 En su lugar, debes utilizar `_` para unir las palabras:
@@ -805,7 +805,7 @@ En su lugar, debes utilizar `_` para unir las palabras:
 ```python
 label inicio_de_la_historia: # Usamos "_" para alargar el nombre, esta es la forma correcta, aunque también puedes hacerlo asi:
 
-label inicioDeLaHistoria: # A mí no me gusta, pero es otra forma de ahcerlo.
+label inicioDeLaHistoria: # A mí no me gusta, pero es otra forma de hacerlo.
 
 ```
 
