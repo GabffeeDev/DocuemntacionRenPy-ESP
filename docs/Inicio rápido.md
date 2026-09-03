@@ -1056,7 +1056,7 @@ No siempre necesitas usar `jump` dentro de un `menu`.
 
 También puedes hacer algo simple:
 
-```
+```python
 menu:
     "Comer pizza":
         "Decidiste comer pizza."
@@ -1105,7 +1105,7 @@ Puedes pensar en la diferencia así:
 
 **Dato curioso:** `jump` puede utilizarse para crear un bucle. Si un label hace `jump` hacia sí mismo, Ren'Py volverá a ejecutar ese mismo bloque una y otra vez:
 
-```
+```python
 label bucle:
     "¡Estamos atrapados!"
 
@@ -1202,7 +1202,7 @@ label escena_yuri:
 
 Ren'Py ejecuta:
 
-```
+```python
 call escena_yuri
 ```
 
@@ -1233,7 +1233,7 @@ Esta es una diferencia fundamental:
 
 ---
 
-```
+```python
 jump escena_yuri
 ```
 
@@ -1255,7 +1255,7 @@ Continúa desde aquí
 
 ---
 
-```
+```python
 call escena_yuri
 ```
 
@@ -1296,7 +1296,7 @@ Una forma fácil de recordarlo:
 
 Por ejemplo, puedes crear una pequeña escena de despedida:
 
-```
+```python
 label despedida:
     "Yuri se despide de mí."
     "Nos vemos mañana."
@@ -1385,7 +1385,7 @@ La instrucción `return` se utiliza principalmente para **volver al punto donde 
 
 Por ejemplo:
 
-```
+```python
 label inicio:
     "Voy a visitar a Yuri."
 
@@ -1426,7 +1426,7 @@ Esta es la parte importante:
 
 Por ejemplo:
 
-```
+```python
 label inicio:
     "La historia ha terminado."
 
@@ -1457,7 +1457,7 @@ Puedes imaginarlo así:
 
 Piensa que `call` y `return` funcionan como una pregunta y una respuesta:
 
-```
+```python
 call escena_yuri
 ```
 
@@ -1467,7 +1467,7 @@ Ren'Py dice:
 
 Después:
 
-```
+```python
 return
 ```
 
@@ -1477,7 +1477,7 @@ Ren'Py dice:
 
 Pero si no hay ningún lugar guardado:
 
-```
+```python
 return
 ```
 
