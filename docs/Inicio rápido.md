@@ -1019,7 +1019,7 @@ Ir a casa
 
 Ren'Py ejecutará:
 
-```
+```python
 jump ruta_casa
 ```
 
