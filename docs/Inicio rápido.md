@@ -208,81 +208,79 @@ Ren'Py muestra:
 ---
 ### Definiendo imágenes
 
-Ren'Py permite estas extensiones: **.jpg, .jpeg, .png, .webp, .avif y .svg**.
+Ren'Py permite estas extensiones: .jpg, .jpeg, .png, .webp, .avif y .svg.
 
-#### Sentencia `image`
+#### Sentencia image
 
-Para que Ren'Py pueda mostrar una imagen, **primero debes registrarla** mediante la sentencia `image`.
+Para que Ren'Py pueda mostrar una imagen, primero debes registrarla mediante la sentencia image.
 
 Su sintaxis es la siguiente:
 
-```python
+```
 image nombre_de_la_imagen = "ruta/del/archivo.png"
 ```
 
 ---
+#### Etiqueta y atributo
 
-**Etiqueta y atributo**
+El nombre de una imagen en Ren'Py está formado por una etiqueta (tag) y uno o más atributos (attributes).
 
-El nombre de una imagen en Ren'Py está formado por una **etiqueta** (*tag*) y uno o más **atributos** (*attributes*).
-
-La **etiqueta** identifica al personaje o recurso principal, mientras que los **atributos** describen su estado, expresión, ropa, pose o cualquier otra característica.
+La etiqueta identifica al personaje o recurso principal, mientras que los atributos describen su estado, expresión, ropa, pose o cualquier otra característica.
 
 Por ejemplo:
 
-```python
+```
 image yuri casual happy = "images/sprites/yuri/casual_happy.png"
 ```
 
 En este caso:
 
-- **Etiqueta:** `yuri`
-- **Atributos:** `casual` y `happy`
+Etiqueta: yuri
+
+Atributos: casual y happy
 
 Otro ejemplo:
 
-```python
+```
 image monika school angry = "images/sprites/monika/school_angry.png"
 ```
 
 Aquí Ren'Py interpreta:
 
-- **Etiqueta:** `monika`
-- **Atributos:** `school` y `angry`
+Etiqueta: monika
 
-Fíjate que **los espacios son importantes**. Cada palabra forma parte del nombre de la imagen y Ren'Py las interpreta como una etiqueta seguida de uno o más atributos.
+Atributos: school y angry
+
+Fíjate que los espacios son importantes. Cada palabra forma parte del nombre de la imagen y Ren'Py las interpreta como una etiqueta seguida de uno o más atributos.
 
 ---
 #### Registro automático de imágenes
 
 Hay una característica de Ren'Py que muchos desarrolladores principiantes pasan por alto.
 
-Si guardas tus imágenes dentro de la carpeta `game/images`, **Ren'Py las registrará automáticamente**, por lo que no será necesario definirlas manualmente con la sentencia `image`.
+Si guardas tus imágenes dentro de la carpeta game/images, Ren'Py las registrará automáticamente, por lo que no será necesario definirlas manualmente con la sentencia image.
 
 Por ejemplo, este archivo:
 
-![Ejemplo automático](images/definicion-automatica.png)
-
-```text
+```
 game/images/yuri/sad.png
 ```
 
 se registrará automáticamente como:
 
-```python
+```
 image yuri sad
 ```
 
 Esto reduce la cantidad de código que debes escribir y hace que tu proyecto sea mucho más fácil de mantener.
 
->**Mi recomendación**: 
->
->Utiliza nombres **descriptivos y consistentes** para tus imágenes, audios y variables. Puede parecer un detalle sin importancia cuando el proyecto es pequeño, pero conforme crezca agradecerás poder identificar cada recurso con solo leer su nombre.
->
->Como puedes ver, mi *sprite* está guardado dentro de `game/images/yuri/yuri sad/`. No he definido la imagen con la sentencia `image`, porque Ren'Py la registrará automáticamente.
->
->Para que esto funcione correctamente, el nombre del archivo debe seguir el formato **etiqueta atributo**, separados por un espacio. En este ejemplo, `yuri` es la **etiqueta** (*tag*) y `sad` es el **atributo** (*attribute*).
+Mi recomendación:
 
+Utiliza nombres descriptivos y consistentes para tus imágenes, audios y variables. Puede parecer un detalle sin importancia cuando el proyecto es pequeño, pero conforme crezca agradecerás poder identificar cada recurso con solo leer su nombre.
+
+Como puedes ver, mi sprite está guardado dentro de game/images/yuri/yuri sad/. No he definido la imagen con la sentencia image, porque Ren'Py la registrará automáticamente.
+
+Para que esto funcione correctamente, el nombre del archivo debe seguir el formato etiqueta atributo, separados por un espacio. En este ejemplo, yuri es la etiqueta (tag) y sad es el atributo (attribute).
 
 ```python
  image yuri sad 
@@ -292,9 +290,51 @@ Esto reduce la cantidad de código que debes escribir y hace que tu proyecto sea
 	Etiqueta
 ```
 
----
+## Importante
 
-**¿Por qué usar etiquetas y atributos?**
+Ren'Py no distingue entre mayúsculas y minúsculas al registrar imágenes. Internamente convierte el nombre a minúsculas.
+
+Por ejemplo, estas definiciones son equivalentes:
+
+```python
+image Yuri Happy = "images/yuri/Yuri Happy.png"
+
+image yuri happy = "images/yuri/Yuri Happy.png"
+```
+
+En ambos casos la imagen se muestra de la misma forma:
+
+```python
+show yuri happy
+```
+
+Aun así, te recomiendo escribir siempre las etiquetas y los atributos en minúsculas para mantener un código consistente y fácil de leer.
+
+## Sentencias show y hide
+
+Una vez registrada una imagen, puedes mostrarla con la sentencia show.
+
+```python
+show yuri happy
+```
+
+Y eliminarla de la pantalla con:
+
+```python
+hide yuri
+```
+
+Generalmente hide se utiliza cuando realmente quieres que un personaje desaparezca de la escena, por ejemplo:
+
+Cuando un personaje abandona la escena.
+
+Antes de mostrar un CG.
+
+Al cambiar de escenario.
+
+Cuando un elemento ya no debe permanecer visible.
+
+#### ¿Por qué usar etiquetas y atributos?
 
 La principal ventaja es que Ren'Py puede cambiar automáticamente la imagen de un personaje sin que tengas que ocultarla primero.
 
@@ -310,59 +350,15 @@ Más adelante basta con escribir:
 show yuri sad
 ```
 
-Como ambas imágenes comparten la etiqueta `yuri`, Ren'Py reemplazará automáticamente la expresión anterior por la nueva.
+Como ambas imágenes comparten la etiqueta yuri, Ren'Py reemplazará automáticamente la expresión anterior por la nueva.
 
-Gracias a este sistema, normalmente **no es necesario utilizar `hide` para cambiar la expresión, la pose o la ropa de un personaje.**
+Gracias a este sistema, normalmente no es necesario utilizar hide para cambiar la expresión, la pose o la ropa de un personaje.
 
-**Importante**
-
-Ren'Py **no distingue entre mayúsculas y minúsculas** al registrar imágenes. Internamente convierte el nombre a minúsculas.
-
-Por ejemplo, estas definiciones son equivalentes:
-
-```python
-image Yuri Happy = "images/yuri/Yuri Happy.png"
-```
-
-```python
-image yuri happy = "images/yuri/Yuri Happy.png"
-```
-
-En ambos casos la imagen se muestra de la misma forma:
-
-```python
-show yuri happy
-```
-
-Aun así, te recomiendo escribir siempre las etiquetas y los atributos en minúsculas para mantener un código consistente y fácil de leer.
-
----
-#### Sentencias `show` y `hide`
-
-Una vez registrada una imagen, puedes mostrarla con la sentencia `show`.
-
-```python
-show yuri happy
-```
-
-Y eliminarla de la pantalla con:
-
-```python
-hide yuri
-```
-
-Generalmente `hide` se utiliza cuando realmente quieres que un personaje desaparezca de la escena, por ejemplo:
-
-- Cuando un personaje abandona la escena.
-- Antes de mostrar un CG.
-- Al cambiar de escenario.
-- Cuando un elemento ya no debe permanecer visible.
-
-**¿Y si no quiero usar la sentencia `image`?**
+ **¿Y si no quiero usar la sentencia image?**
 
 También es completamente válido mostrar un archivo indicando su ruta directamente.
 
-```python
+```
 show "images/sprites/yuri/happy.png"
 ```
 
@@ -370,7 +366,33 @@ En este caso Ren'Py cargará esa imagen sin necesidad de haberla registrado ante
 
 Muchos desarrolladores utilizan este método para imágenes que solo aparecerán una vez, pruebas rápidas o recursos temporales.
 
-Sin embargo, para personajes que cambiarán constantemente de expresión, la sentencia `image` resulta mucho más cómoda y mantiene el código limpio y organizado.
+Sin embargo, para personajes que cambiarán constantemente de expresión, la sentencia image resulta mucho más cómoda y mantiene el código limpio y organizado.
+
+#### Sentencia scene y show
+
+Además de show y hide, Ren'Py cuenta con la sentencia scene, que se utiliza para cambiar completamente el fondo o escenario de la historia.
+
+```
+scene bg salon
+```
+
+A diferencia de show, scene primero elimina todas las imágenes que estén actualmente en pantalla (fondos y personajes) y luego muestra la nueva imagen indicada. Es como si se "limpiara" la escena antes de dibujar la siguiente.
+
+## ¿Cuándo usar scene y cuándo usar show?
+
+- **scene**: se usa cuando cambias de escenario o ubicación por completo (por ejemplo, pasar del salón de clases al patio, o de exterior a interior). Como borra todo lo que había en pantalla, es ideal para marcar una transición clara entre lugares o momentos de la historia.
+    
+- **show**: se usa para añadir o actualizar un elemento sobre la escena actual sin borrar lo demás — normalmente para mostrar o cambiar la expresión, pose o ropa de un personaje (como se vio en la sección de Sentencias show y hide), o para agregar un objeto adicional sin afectar el fondo ya establecido.
+    
+
+Un flujo típico combina ambas sentencias:
+
+```python
+scene bg salon
+show yuri happy # show se usa para sprites
+```
+
+Primero se establece el fondo con scene y después se coloca al personaje encima con show.
 
 ---
 ### Audio
