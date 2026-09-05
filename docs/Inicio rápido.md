@@ -650,7 +650,7 @@ También funciona con otros canales. *Excepto para el canal audio.*
 stop sound
 stop music
 stop voice
-X stop audio X -> # No lo permite
+stop audio -> # No lo permite
 ```
 
 #### Una configuración recomendada para principiantes
@@ -1222,6 +1222,18 @@ return
 
 `return` significa **"terminé lo que vine a hacer, vuelve al lugar desde donde me llamaron"**.
 
+> `call` también puede tener labels locales
+
+```python
+label ruta_yuri:
+	call .escena
+	
+label .escena:
+	# Escena en ruta yuri
+	return
+
+```
+
 ---
 #### Diferencia entre `jump` y `call`
 
@@ -1493,3 +1505,710 @@ Ren'Py no tiene a dónde regresar dentro de la historia, así que **reinicia Ren
 >
  `return` también puede devolver un valor, que Ren'Py guarda en una variable especial llamada `_return`. Esto es útil para que un `label` pueda realizar una acción y enviar un resultado de vuelta al lugar que lo llamó.
 
+---
+
+### Memoria y decisiones
+
+Hasta ahora hemos aprendido cómo crear decisiones y ramificar nuestra novela visual.
+
+Pero existe un problema.
+
+Imagina que el jugador toma una decisión importante al comienzo de la historia:
+
+> **¿Cómo hacemos para que Ren'Py recuerde esa decisión más adelante?**
+
+Por ejemplo, Natsuki podría pedirnos que guardemos un secreto.
+
+```python
+menu:
+
+    "¿Guardarás mi secreto?"
+
+    "Sí, puedes confiar en mí.":
+        # El jugador acepta guardar el secreto.
+
+    "No puedo prometerte eso.":
+        # El jugador no acepta.
+```
+
+La decisión ocurre correctamente.
+
+Pero...
+
+**¿Qué pasará dentro de diez escenas?**
+
+¿Cómo sabrá Ren'Py cuál fue la decisión que tomó el jugador?
+
+Aquí es donde entran las **variables**.
+
+Una variable es un espacio donde podemos guardar información que nuestra novela visual necesita recordar.
+
+Podemos utilizarlas para almacenar:
+
+- Decisiones del jugador.
+- Puntos de afinidad.
+- Nombres.
+- Secretos descubiertos.
+- Rutas.
+- Eventos importantes.
+- Estados de los personajes.
+
+En pocas palabras:
+
+> **Las variables son la memoria de nuestra novela visual.**
+
+---
+
+#### Tipos de variables
+
+Una variable puede almacenar diferentes tipos de información.
+
+Por ahora, vamos a trabajar principalmente con estos tipos:
+
+##### Variables numéricas
+
+Guardan números.
+
+```python
+default puntos = 10
+```
+
+Por ejemplo:
+
+```python
+default puntos = 0
+```
+
+También podemos comenzar con otro número:
+
+```python
+default dinero = 100
+```
+
+Las variables numéricas son especialmente útiles para sistemas como:
+
+- Puntos.
+- Dinero.
+- Afinidad.
+- Confianza.
+- Estadísticas.
+- Contadores.
+
+Por ejemplo, podemos crear un sistema sencillo de afinidad:
+
+```python
+default afinidad_natsuki = 0
+```
+
+Cada vez que el jugador tome una buena decisión, podemos aumentar ese valor. Más adelante aprenderemos cómo modificarlo.
+
+##### Variables de tipo cadena
+
+Guardan texto.
+
+```python
+default nombre = "Gabffee"
+```
+
+Las cadenas son útiles para guardar información como:
+
+- Nombres.
+- Textos.
+- Apodos.
+- Respuestas.
+- Información escrita.
+
+Por ejemplo, más adelante podríamos permitir que el jugador escriba su nombre y guardarlo en una variable:
+
+```python
+default nombre = "Jugador"
+```
+
+Después podríamos utilizarlo dentro del diálogo.
+
+##### Variables booleanas
+
+Solo pueden tener dos valores:
+
+```python
+True
+```
+
+o:
+
+```python
+False
+```
+
+Por ejemplo:
+
+```python
+default conoce_secreto = False
+```
+
+También podemos utilizar:
+
+```python
+None
+```
+
+`None` significa que la variable **todavía no tiene ningún valor asignado**. Esto puede ser especialmente útil cuando queremos representar una situación donde el jugador **todavía no ha tomado una decisión**.
+
+Imaginemos que más adelante el jugador debe decidir si confía en Natsuki:
+
+```python
+default confia_en_natsuki = None
+```
+
+Al inicio de la historia:
+
+> El jugador todavía no ha decidido.
+
+Más adelante:
+
+```python
+$ confia_en_natsuki = True
+```
+
+O:
+
+```python
+$ confia_en_natsuki = False
+```
+
+Ahora podemos distinguir **tres estados diferentes**:
+
+|Valor|Significado|
+|---|---|
+|`None`|Todavía no existe una decisión|
+|`True`|El jugador confía|
+|`False`|El jugador no confía|
+
+Esto es importante porque `None` **no significa lo mismo que `False`**.
+
+Por ejemplo:
+
+```python
+default acepto_ayuda = None
+```
+
+Puede significar:
+
+> El jugador todavía no ha respondido.
+
+Mientras que:
+
+```python
+default acepto_ayuda = False
+```
+
+Significa:
+
+> El jugador respondió y decidió no aceptar.
+
+**Los booleanos son perfectos para responder preguntas como:**
+
+- ¿El jugador descubrió el secreto?
+- ¿Conoció a este personaje?
+- ¿Tomó esta decisión?
+- ¿Desbloqueó esta escena?
+- ¿Aceptó una propuesta?
+
+Por ejemplo:
+
+```python
+default ayudo_a_natsuki = False
+```
+
+La variable responde a una pregunta:
+
+> **¿El jugador ayudó a Natsuki?**
+
+Al principio: `No.` Por eso su valor es `False`.
+
+Si el jugador la ayuda:
+
+```python
+$ ayudo_a_natsuki = True
+```
+
+Ahora la respuesta será: `Sí.`
+
+---
+
+#### `default` — darle un valor inicial a la variable
+
+Antes de utilizar una variable, necesitamos darle un valor inicial. En Ren'Py normalmente utilizamos:
+
+```python
+default
+```
+
+Por ejemplo:
+
+```python
+default puntos = 0
+```
+
+Esto crea una variable llamada `puntos` y le asigna inicialmente el valor `0`. Podemos interpretarlo así:
+
+> **Al comenzar una nueva partida, la variable `puntos` tendrá el valor `0`.**
+
+Veamos otro ejemplo:
+
+```python
+default nombre = "Jugador"
+```
+
+Aquí estamos creando una variable llamada `nombre` que inicialmente contiene el texto `"Jugador"`.
+
+La estructura general sería:
+
+```python
+default nombre_variable = valor
+```
+
+Por ejemplo:
+
+```python
+default confianza = 0
+default nombre = "Jugador"
+default conoce_secreto = False
+```
+
+Cada variable guarda información diferente.
+
+---
+
+#### ¿Cómo modifico una variable?
+
+Ya sabemos cómo crear variables con `default`. Pero existe una pregunta importante:
+
+> **¿Cómo cambiamos el valor de una variable durante nuestra historia?**
+
+Por ejemplo:
+
+```python
+default afinidad_natsuki = 0
+```
+
+Si el jugador toma una buena decisión... **¿cómo hacemos que la afinidad aumente?**
+
+Para modificar variables directamente dentro del guion, podemos utilizar:
+
+```python
+$
+```
+
+El símbolo `$` nos permite ejecutar una instrucción de Python directamente en nuestro script.
+
+Por ejemplo:
+
+```python
+$ afinidad_natsuki = 5
+```
+
+Ahora la variable tendrá el valor `5`.
+
+También podemos modificar booleanos:
+
+```python
+$ conoce_secreto = True
+```
+
+O cadenas:
+
+```python
+$ nombre = "Gabffee"
+```
+
+A partir de aquí podemos aprender algo todavía más útil:
+
+> **¿Cómo aumentamos, disminuimos o modificamos variables sin tener que escribir manualmente todo su valor?**
+
+Eso nos lleva a operaciones como:
+
+```python
+$ puntos += 1
+```
+
+y:
+
+```python
+$ puntos -= 1
+```
+
+---
+
+#### Comparadores — cómo preguntarle algo a una variable
+
+Ahora sabemos que las variables pueden guardar y modificar información. Pero...
+
+**¿Cómo podemos comprobar esa información?**
+
+Por ejemplo:
+
+```python
+default afinidad_natsuki = 5
+```
+
+¿Cómo podemos preguntarle a Ren'Py si la afinidad es mayor que `3`?
+
+Para hacer esto utilizamos **operadores de comparación**. Los comparadores nos permiten comparar valores y obtener un resultado: `True` o `False`.
+
+Por ejemplo:
+
+```python
+afinidad_natsuki >= 5
+```
+
+Ren'Py comprobará si el valor de `afinidad_natsuki` es mayor o igual a `5`. Si tenemos `default afinidad_natsuki = 5`, el resultado será `True`.
+
+##### Igual a `==`
+
+Para comprobar si dos valores son iguales utilizamos `==`.
+
+```python
+afinidad_natsuki == 5
+```
+
+Esto pregunta: **¿La afinidad con Natsuki es exactamente igual a `5`?**
+
+##### Diferente de `!=`
+
+```python
+afinidad_natsuki != 5
+```
+
+Esto pregunta: **¿La afinidad con Natsuki es diferente de `5`?**
+
+##### Mayor que `>`
+
+```python
+afinidad_natsuki > 5
+```
+
+Esto significa: **¿La afinidad con Natsuki es mayor que `5`?**
+
+##### Menor que `<`
+
+```python
+afinidad_natsuki < 5
+```
+
+Esto significa: **¿La afinidad con Natsuki es menor que `5`?**
+
+##### Mayor o igual que `>=`
+
+```python
+afinidad_natsuki >= 5
+```
+
+Esto será verdadero si la afinidad es `5, 6, 7, 8, 9, 10...`
+
+##### Menor o igual que `<=`
+
+```python
+afinidad_natsuki <= 5
+```
+
+Esto será verdadero si la afinidad es `5, 4, 3, 2, 1, 0...`
+
+##### Resumen
+
+|Comparador|Significado|
+|---|---|
+|`==`|Igual a|
+|`!=`|Diferente de|
+|`>`|Mayor que|
+|`<`|Menor que|
+|`>=`|Mayor o igual que|
+|`<=`|Menor o igual que|
+
+Estos operadores serán especialmente importantes cuando utilicemos `if`, porque `if` necesita comprobar si una condición es verdadera o falsa.
+
+Por ejemplo:
+
+```python
+if afinidad_natsuki >= 5:
+
+    n "Creo que puedo confiar en ti."
+```
+
+Aquí está ocurriendo lo siguiente:
+
+1. Ren'Py obtiene el valor de `afinidad_natsuki`.
+2. Lo compara con `5`.
+3. El comparador produce `True` o `False`.
+4. Si el resultado es `True`, se ejecuta el código dentro de `if`.
+
+##### ⚠️ `=` y `==` No son lo mismo
+
+Esta parte **sí merece una pequeña advertencia**, porque los principiantes suelen confundirlos:
+
+```python
+=
+```
+
+Se utiliza para **asignar un valor**.
+
+```python
+$ afinidad_natsuki = 5
+```
+
+Mientras que:
+
+```python
+==
+```
+
+Se utiliza para **comparar dos valores**.
+
+```python
+if afinidad_natsuki == 5:
+```
+
+> **Resumen:**
+> 
+> **`=` cambia o asigna un valor.** **`==` compara dos valores.**
+
+---
+
+#### Operadores lógicos — combinar varias preguntas
+
+Hasta ahora hemos aprendido a comparar valores. Por ejemplo:
+
+```python
+afinidad_natsuki >= 5
+```
+
+Esta comparación puede producir `True` o `False`. Pero...
+
+**¿Qué ocurre si queremos comprobar más de una condición al mismo tiempo?**
+
+Por ejemplo:
+
+> ¿Natsuki confía en nosotros **y** conoce nuestro secreto?
+
+O quizás:
+
+> ¿Tenemos suficiente afinidad **o** conocemos una información importante?
+
+Para crear este tipo de condiciones utilizamos los **operadores lógicos**. Por ahora aprenderemos tres: `and`, `or`, `not`.
+
+##### `and`
+
+`and` significa **Y**. Cuando utilizamos `and`, **todas las condiciones deben cumplirse**.
+
+```python
+if afinidad_natsuki >= 5 and conoce_secreto:
+```
+
+Aquí estamos haciendo dos preguntas:
+
+1. ¿La afinidad con Natsuki es mayor o igual a `5`?
+2. ¿El jugador conoce el secreto?
+
+Como estamos utilizando `and`, **las dos condiciones deben ser verdaderas**.
+
+|Afinidad suficiente|Conoce el secreto|Resultado|
+|---|---|---|
+|`True`|`True`|`True`|
+|`True`|`False`|`False`|
+|`False`|`True`|`False`|
+|`False`|`False`|`False`|
+
+```python
+if afinidad_natsuki >= 5 and conoce_secreto:
+
+    n "Creo que finalmente puedo confiar en ti."
+```
+
+Este diálogo solamente aparecerá si la afinidad es mayor o igual a `5` **y además** el jugador conoce el secreto.
+
+> **Con `and`, todo debe cumplirse.**
+
+##### `or`
+
+`or` significa **O**. A diferencia de `and`, con `or` **no es necesario que todas las condiciones sean verdaderas**; solo necesitamos que **al menos una** se cumpla.
+
+```python
+if afinidad_natsuki >= 5 or conoce_secreto:
+```
+
+|Afinidad suficiente|Conoce el secreto|Resultado|
+|---|---|---|
+|`True`|`True`|`True`|
+|`True`|`False`|`True`|
+|`False`|`True`|`True`|
+|`False`|`False`|`False`|
+
+```python
+if afinidad_natsuki >= 5 or conoce_secreto:
+
+    n "Supongo que podemos hablar sobre esto."
+```
+
+> **Con `or`, basta con que una condición se cumpla.**
+
+##### `not`
+
+`not` significa **No**. Se utiliza para negar una condición.
+
+```python
+default conoce_secreto = False
+```
+
+Podemos preguntar `if conoce_secreto:` (si el jugador conoce el secreto). Pero **¿qué ocurre si queremos comprobar lo contrario?** Usamos `not`:
+
+```python
+if not conoce_secreto:
+
+    n "Todavía hay cosas que no sabes sobre mí."
+```
+
+Esto significa: **Si el jugador NO conoce el secreto.**
+
+|Valor original|Con `not`|
+|---|---|
+|`True`|`False`|
+|`False`|`True`|
+
+Con `default conoce_secreto = False`, entonces `not conoce_secreto` produce `True`, porque estamos preguntando "¿No conoce el secreto?" y la respuesta es sí.
+
+> **`not` cambia un "sí" por un "no" y un "no" por un "sí".**
+
+##### Combinando operadores lógicos
+
+También podemos combinar varias condiciones para crear cosas como:
+
+```python
+menu:
+
+    "¿Qué quieres decirle a Natsuki?"
+
+    "Preguntarle directamente sobre su secreto." if afinidad_natsuki >= 5 and conoce_secreto:
+        n "..."
+```
+
+Esta opción solamente aparecerá si la afinidad con Natsuki es mayor o igual a `5` **y** el jugador conoce su secreto. Ahora nuestras decisiones pueden depender de varias acciones anteriores, y esto nos permite crear:
+
+- Opciones desbloqueables.
+- Conversaciones especiales.
+- Rutas alternativas.
+- Escenas secretas.
+- Diferentes finales.
+
+##### Resumen
+
+|Operador|Significado|Regla sencilla|
+|---|---|---|
+|`and`|Y|Todo debe cumplirse|
+|`or`|O|Al menos una condición debe cumplirse|
+|`not`|No|Niega la condición|
+
+Ahora ya sabemos cómo crear condiciones más complejas. Presta atención a `if`, `elif` y `else`.
+
+---
+
+#### `if`, `elif` y `else` — usar la información para tomar decisiones
+
+Ahora que Ren'Py puede recordar información... **¿cómo utilizamos esa información?**
+
+##### `if`
+
+`if` significa: **Si esta condición se cumple, ejecuta este código.**
+
+```python
+default conoce_secreto = True
+
+if conoce_secreto:
+
+    n "Ahora sabes demasiado sobre mí."
+```
+
+Este diálogo solamente aparecerá si `conoce_secreto = True`. También podemos comprobar valores numéricos:
+
+```python
+if afinidad_natsuki >= 5:
+
+    n "Creo que puedo confiar en ti."
+```
+
+Esto significa: si la afinidad con Natsuki es mayor o igual a `5`, muestra este diálogo.
+
+##### `elif`
+
+Pero... **¿qué ocurre si tenemos más de dos posibilidades?** Para eso usamos `elif`, que significa algo parecido a: **Si la condición anterior no se cumplió, comprueba esta otra condición.**
+
+```python
+if afinidad_natsuki >= 10:
+
+    n "Eres una persona muy importante para mí."
+
+elif afinidad_natsuki >= 5:
+
+    n "Creo que estamos empezando a llevarnos mejor."
+```
+
+Ren'Py comprobará las condiciones en orden: primero `afinidad_natsuki >= 10`; si no se cumple, comprobará `afinidad_natsuki >= 5`.
+
+##### `else`
+
+Finalmente tenemos `else`, que significa: **Si ninguna de las condiciones anteriores se cumple, ejecuta esto.**
+
+```python
+if afinidad_natsuki >= 10:
+
+    n "Eres una persona muy importante para mí."
+
+elif afinidad_natsuki >= 5:
+
+    n "Creo que estamos empezando a llevarnos mejor."
+
+else:
+
+    n "Todavía no te conozco lo suficiente."
+```
+
+Ahora tenemos tres posibles resultados:
+
+|Afinidad|Resultado|
+|---|---|
+|`10` o más|Gran confianza|
+|Entre `5` y `9`|Relación mejorando|
+|Menos de `5`|Todavía existe distancia|
+
+---
+
+#### Menús condicionales
+
+Hasta ahora hemos utilizado condiciones para cambiar diálogos. Pero también podemos utilizarlas para cambiar las **opciones disponibles para el jugador**.
+
+```python
+menu:
+
+    "¿Qué quieres decirle a Natsuki?"
+
+    "Preguntarle cómo está.":
+        n "Estoy bien..."
+
+    "Preguntarle sobre su secreto." if conoce_secreto:
+        n "¡¿Por qué estás hablando de eso?!"
+```
+
+Observa esta parte: `if conoce_secreto`. La opción "Preguntarle sobre su secreto." solamente aparecerá si el jugador conoce el secreto. Si `conoce_secreto = False`, la opción ni siquiera aparecerá.
+
+Esto permite crear decisiones que dependen de acciones anteriores, como:
+
+- Opciones desbloqueables.
+- Nuevas conversaciones.
+- Rutas secretas.
+- Decisiones especiales.
+- Finales alternativos.
+
+---
+
+> **Dato curioso:**
+> 
+> Ren'Py está construido sobre Python, por eso muchas de las expresiones utilizadas para trabajar con variables —como `if`, `elif`, `else`, `True`, `False` y los operadores `+=`— siguen la sintaxis de Python. Esto permite que Ren'Py combine narrativa con lógica de programación de una forma bastante natural.
