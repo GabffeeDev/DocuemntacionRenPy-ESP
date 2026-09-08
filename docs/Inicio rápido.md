@@ -44,12 +44,6 @@ En la carpeta `images`, por ejemplo, puedes separar los recursos de la siguiente
     
 - `cgs` para las ilustraciones especiales.
     
-- `sprites` para los personajes.
-    
-
-Dentro de `sprites`, lo ideal es crear una carpeta para cada personaje y guardar allí todas sus expresiones y poses.
-
-Puede parecer una organización excesiva al principio, pero cuando el proyecto crezca te ahorrarás mucho tiempo buscando archivos. Un proyecto ordenado también transmite profesionalidad y facilita el mantenimiento.
 
 ![Carpeta images organizada por tipo de recurso](images/carpeta-images.png)
 
